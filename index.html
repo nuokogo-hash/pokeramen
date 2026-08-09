@@ -634,6 +634,7 @@
             steamTimer: null,
             steamInterval: null,
             gameOver: false,
+            orderCounter: 0,
         };
 
         // DOM refs
@@ -665,32 +666,52 @@
         }
 
         // ---------- GAME MECHANICS ----------
+        function getDishCount() {
+            const orderNum = state.orderCounter + 1;
+            if (orderNum <= 3) {
+                return 1;
+            } else if (orderNum <= 15) {
+                return Math.random() < 0.5 ? 1 : 2;
+            } else {
+                const rand = Math.random();
+                if (rand < 0.33) return 1;
+                if (rand < 0.66) return 2;
+                return 3;
+            }
+        }
+
+        function getOrderTime(dishesCount) {
+            if (dishesCount === 1) return 30;
+            if (dishesCount === 2) return 50;
+            return 70;
+        }
+
         function generateOrder() {
             if (!state.shiftActive || state.gameOver) return;
-            const served = state.totalOrdersServed;
-            let pool = ALL_DISHES;
-            let count = 1;
-            if (served >= 3 && served < 10) count = 2;
-            else if (served >= 10) count = 3;
-
+            
+            const count = getDishCount();
             const dishes = [];
+            const pool = ALL_DISHES;
             for (let i=0; i<count; i++) {
                 const dish = pool[Math.floor(Math.random() * pool.length)];
                 dishes.push(dish);
             }
 
+            const timeLimit = getOrderTime(count);
+            
             const order = {
                 dishes: dishes,
-                remaining: 30,
-                timer: 30,
+                remaining: timeLimit,
+                timer: timeLimit,
                 cooked: false,
                 completed: false,
                 dishCompleted: new Array(dishes.length).fill(false),
                 index: Date.now() + Math.random()
             };
             state.orders.push(order);
+            state.orderCounter++;
             renderOrders();
-            showMessage(`📩 Новый заказ! ${dishes.map(d => MENU[d].display).join(', ')}`);
+            showMessage(`📩 Заказ #${state.orderCounter}: ${dishes.map(d => MENU[d].display).join(', ')} (${timeLimit}с)`);
         }
 
         function renderOrders() {
@@ -1135,6 +1156,7 @@
             state.assembled = [];
             state.currentDishName = null;
             state.isFolded = false;
+            state.orderCounter = 0;
             updateCoins();
             shiftBtn.textContent = '⏳ Смена идёт...';
             kitchenStatus.textContent = '🍳 Принимай заказы!';

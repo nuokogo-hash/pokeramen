@@ -255,6 +255,17 @@
             max-width: 100%;
             text-align: center;
             line-height: 1.3;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .order-card .dishes-list .d-item img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            flex-shrink: 0;
         }
         .order-card .dishes-list .d-item.done {
             background: #7ae07a;
@@ -332,6 +343,18 @@
             color: #cc0000;
             font-size: 12px;
             line-height: 1.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .recipe-display .dish-name img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            flex-shrink: 0;
         }
         .recipe-display .ing-list {
             display: flex;
@@ -362,10 +385,10 @@
         .ingredient-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 8px;
             justify-content: center;
             background: #ffcccc;
-            padding: 4px;
+            padding: 8px;
             border: 4px solid #cc0000;
             flex-shrink: 0;
             height: 33.33%;
@@ -376,22 +399,30 @@
         }
         .ingredient-box {
             background: #ffffff;
-            border: 3px solid #cc0000;
-            padding: 2px 8px;
-            font-size: 7px;
+            border: 4px solid #cc0000;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
-            gap: 3px;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: inset -3px -3px 0 #880000;
-            font-family: 'Press Start 2P', monospace;
-            line-height: 1.3;
+            font-size: 22px;
+            transition: 0.05s linear;
+            flex-shrink: 0;
+            overflow: hidden;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
         .ingredient-box:active {
-            transform: scale(0.95);
+            transform: scale(0.92);
+            border-color: #ff4444;
         }
-        .ingredient-box .emoji {
-            font-size: 12px;
+        .ingredient-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
         /* ====== 1/8 — СБОРКА ====== */
         .assembly-zone {
@@ -417,6 +448,16 @@
             font-size: 7px;
             font-family: 'Press Start 2P', monospace;
             line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .assembly-zone .placed img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
         /* ====== 1/8 — ВСЁ ОСТАЛЬНОЕ ====== */
         .kitchen-bottom {
@@ -561,19 +602,30 @@
             font-size: 8px;
             color: #880000;
         }
-        .shift-status {
-            font-size: 9px;
-            color: #ffffff;
-            background: #880000;
-            padding: 2px 10px;
-            border: 2px solid #660000;
-            font-family: 'Press Start 2P', monospace;
-            flex-shrink: 0;
-            text-align: center;
+        .ingredient-box .ing-label {
+            display: none;
         }
-        .shift-status.active {
-            background: #2d8a4e;
-            border-color: #1a5a30;
+        /* Маппинг блюд на текстуры */
+        .dish-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .dish-icon-large {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .dish-icon-order {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
     </style>
 </head>
@@ -625,13 +677,13 @@
 
             <!-- 1/4 — ИНГРЕДИЕНТЫ -->
             <div class="ingredient-row" id="ingredientBoxes">
-                <div class="ingredient-box" data-ing="клубника"><span class="emoji">🍓</span> Клубника</div>
-                <div class="ingredient-box" data-ing="творожный сыр"><span class="emoji">🧀</span> Твор. сыр</div>
-                <div class="ingredient-box" data-ing="тесто"><span class="emoji">🫓</span> Тесто</div>
-                <div class="ingredient-box" data-ing="лосось"><span class="emoji">🐟</span> Лосось</div>
-                <div class="ingredient-box" data-ing="креветка"><span class="emoji">🦐</span> Креветка</div>
-                <div class="ingredient-box" data-ing="рисовое тесто"><span class="emoji">🍚</span> Рис. тесто</div>
-                <div class="ingredient-box" data-ing="смородина"><span class="emoji">🫐</span> Смородина</div>
+                <div class="ingredient-box" data-ing="клубника"><img src="ph/st.png" alt="st"></div>
+                <div class="ingredient-box" data-ing="творожный сыр"><img src="ph/ch.png" alt="ch"></div>
+                <div class="ingredient-box" data-ing="тесто"><img src="ph/tes.png" alt="tes"></div>
+                <div class="ingredient-box" data-ing="лосось"><img src="ph/sal.png" alt="sal"></div>
+                <div class="ingredient-box" data-ing="креветка"><img src="ph/cr.png" alt="cr"></div>
+                <div class="ingredient-box" data-ing="рисовое тесто"><img src="ph/ris_tes.png" alt="ris_tes"></div>
+                <div class="ingredient-box" data-ing="смородина"><img src="ph/cmor.png" alt="cmor"></div>
             </div>
 
             <!-- 1/8 — СБОРКА -->
@@ -660,27 +712,48 @@
 <script>
     (function() {
         // ---------- DATA ----------
+        // Маппинг блюд на текстуры
+        const DISH_IMAGES = {
+            'Моти с клубникой': 'ph/moti_st.png',
+            'Дим сам': 'ph/dim.png',
+            'Моти со смородиной': 'ph/moti_smor.png'
+        };
+
         const MENU = {
             'Моти с клубникой': {
                 ingredients: ['рисовое тесто', 'клубника', 'творожный сыр'],
                 price: 15,
                 needsSteam: false,
-                display: '🍓 Моти с клубникой'
+                display: 'Моти с клубникой',
+                icon: 'ph/moti_st.png'
             },
             'Дим сам': {
                 ingredients: ['тесто', 'лосось', 'креветка'],
                 price: 20,
                 needsSteam: true,
-                display: '🥟 Дим сам'
+                display: 'Дим сам',
+                icon: 'ph/dim.png'
             },
             'Моти со смородиной': {
                 ingredients: ['смородина', 'рисовое тесто', 'творожный сыр'],
                 price: 15,
                 needsSteam: false,
-                display: '🫐 Моти со смородиной'
+                display: 'Моти со смородиной',
+                icon: 'ph/moti_smor.png'
             }
         };
         const ALL_DISHES = Object.keys(MENU);
+
+        // Маппинг ингредиентов на пути к текстурам
+        const INGREDIENT_IMAGES = {
+            'клубника': 'ph/st.png',
+            'творожный сыр': 'ph/ch.png',
+            'тесто': 'ph/tes.png',
+            'лосось': 'ph/sal.png',
+            'креветка': 'ph/cr.png',
+            'рисовое тесто': 'ph/ris_tes.png',
+            'смородина': 'ph/cmor.png'
+        };
 
         // ---------- STATE ----------
         let state = {
@@ -780,7 +853,8 @@
             state.orderCounter++;
             renderOrders();
             scrollOrdersToEnd();
-            showMessage(`📩 Заказ #${state.orderCounter}: ${dishes.map(d => MENU[d].display).join(', ')} (${timeLimit}с)`);
+            const dishNames = dishes.map(d => MENU[d].display).join(', ');
+            showMessage(`📩 Заказ #${state.orderCounter}: ${dishNames} (${timeLimit}с)`);
         }
 
         function renderOrders() {
@@ -794,13 +868,14 @@
                 
                 let dishesHtml = order.dishes.map((d, i) => {
                     const display = MENU[d]?.display || d;
+                    const icon = MENU[d]?.icon || '';
                     const isDone = order.dishCompleted[i];
                     const isCurrent = state.currentCookingOrderIdx === idx && state.currentDishIndex === i && !isDone;
                     let cls = 'd-item';
                     if (display.length > 12) cls += ' d-item-long';
                     if (isDone) cls += ' done';
                     if (isCurrent) cls += ' current';
-                    return `<span class="${cls}">${display} ${isDone ? '✅' : ''}</span>`;
+                    return `<span class="${cls}"><img src="${icon}" alt="${display}" class="dish-icon"> ${display} ${isDone ? '✅' : ''}</span>`;
                 }).join('');
                 
                 const allDone = order.dishCompleted.every(v => v === true);
@@ -866,7 +941,8 @@
             
             renderCookingUI();
             renderOrders();
-            showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${dishIdx+1}/${order.dishes.length})`);
+            const display = MENU[state.currentDishName].display;
+            showMessage(`🔪 Готовим ${display} (${dishIdx+1}/${order.dishes.length})`);
         }
 
         function renderCookingUI() {
@@ -885,7 +961,11 @@
             const doneCount = order.dishCompleted.filter(v => v).length;
             const progressText = totalDishes > 1 ? `Блюдо ${state.currentDishIndex+1}/${totalDishes} (готово ${doneCount}/${totalDishes})` : '';
 
-            let recipeHtml = `<div class="dish-name">${recipe.display}</div>`;
+            // Рецепт с иконкой блюда
+            let recipeHtml = `<div class="dish-name">
+                                <img src="${recipe.icon}" alt="${recipe.display}" class="dish-icon-large">
+                                ${recipe.display}
+                            </div>`;
             recipeHtml += `<div class="ing-list">`;
             recipe.ingredients.forEach(ing => {
                 const has = state.assembled.includes(ing);
@@ -900,8 +980,12 @@
             }
             recipeContent.innerHTML = recipeHtml;
 
+            // Сборка с текстурами
             let assemblyHtml = state.assembled.length ? 
-                state.assembled.map(a => `<span class="placed">${a}</span>`).join(' ') : 
+                state.assembled.map(a => {
+                    const imgPath = INGREDIENT_IMAGES[a] || '';
+                    return `<span class="placed"><img src="${imgPath}" alt="${a}"> ${a}</span>`;
+                }).join(' ') : 
                 '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
             assemblyArea.innerHTML = assemblyHtml;
 
@@ -985,7 +1069,8 @@
                     steamTimerContainer.style.display = 'none';
                     renderCookingUI();
                     renderOrders();
-                    showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${nextIdx+1}/${order.dishes.length})`);
+                    const display = MENU[state.currentDishName].display;
+                    showMessage(`🔪 Готовим ${display} (${nextIdx+1}/${order.dishes.length})`);
                 });
             }
 
@@ -1189,7 +1274,6 @@
             shiftBtn.classList.remove('active');
             kitchenStatus.textContent = '🍳 Смена завершена';
             showMessage('⏹ Смена завершена!');
-            // Очищаем заказы
             state.orders = [];
             renderOrders();
             recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';

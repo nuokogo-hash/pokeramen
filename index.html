@@ -79,6 +79,18 @@
             text-shadow: 2px 2px 0 #0f3a1f;
             box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
         }
+        .pixel-btn.orange {
+            background: #e67e22;
+            border: 4px solid #a04000;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #6b2f00;
+            box-shadow: inset -3px -3px 0 #6b2f00, inset 3px 3px 0 #f39c12;
+        }
+        .pixel-btn:disabled {
+            opacity: 0.5;
+            transform: none !important;
+            box-shadow: inset -3px -3px 0 #660000, inset 3px 3px 0 #ff4444 !important;
+        }
         .screen {
             width: 100%;
             height: 100%;
@@ -226,13 +238,21 @@
             font-weight: bold;
             font-size: 18px;
         }
+        .order-item .timer.urgent {
+            color: #ff0000;
+            animation: blink 0.5s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
         .order-recipe {
             display: flex;
             flex-wrap: wrap;
             gap: 4px;
             margin: 4px 0;
         }
-        .ingredient-tag {
+        .order-recipe .dish-item {
             background: #ffcccc;
             padding: 2px 10px;
             border-radius: 30px;
@@ -241,12 +261,16 @@
             color: #000000;
             font-weight: bold;
         }
-        .cook-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 6px 0;
-            justify-content: center;
+        .order-recipe .dish-item.done {
+            background: #7ae07a;
+            border-color: #2d8a4e;
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .order-recipe .dish-item.current {
+            border-color: #ff8800;
+            border-width: 3px;
+            background: #ffe0b0;
         }
         .cook-btn {
             background: #cc0000;
@@ -256,6 +280,7 @@
             border-radius: 30px;
             font-size: 14px;
             font-weight: bold;
+            cursor: pointer;
         }
         .cook-btn:active {
             transform: scale(0.92);
@@ -270,9 +295,14 @@
             border: 3px solid #1a5a30;
             color: #ffffff;
         }
+        .cook-btn.orange {
+            background: #e67e22;
+            border: 3px solid #a04000;
+            color: #ffffff;
+        }
         .cook-btn:disabled {
             opacity: 0.5;
-            transform: none;
+            transform: none !important;
         }
         .message-bar {
             width: 100%;
@@ -311,6 +341,7 @@
             color: #000000;
             font-size: 16px;
             margin-bottom: 4px;
+            width: 100%;
         }
         .recipe-display .dish-name {
             color: #cc0000;
@@ -329,6 +360,15 @@
             border-radius: 30px;
             border: 2px solid #cc0000;
             font-size: 14px;
+        }
+        .recipe-display .ing-list span.done {
+            background: #7ae07a;
+            border-color: #2d8a4e;
+        }
+        .recipe-display .progress-info {
+            margin-top: 4px;
+            font-size: 14px;
+            color: #880000;
         }
         .ingredient-row {
             display: flex;
@@ -382,64 +422,75 @@
             font-weight: bold;
             font-size: 14px;
         }
-        .steam-zone {
-            background: #d4e6f1;
-            border: 3px solid #2d8a4e;
-            border-radius: 16px;
-            padding: 6px;
+        .action-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            margin: 4px 0;
-        }
-        .steam-zone .label {
-            font-weight: bold;
-            color: #1a5a30;
-            font-size: 16px;
-        }
-        .steam-zone .steam-btn {
-            background: #2d8a4e;
-            border: 3px solid #1a5a30;
-            color: #ffffff;
-            padding: 6px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .steam-zone .steam-btn:active {
-            transform: scale(0.95);
-        }
-        .steam-zone .steam-btn:disabled {
-            opacity: 0.6;
-        }
-        .steam-zone .steam-status {
-            font-size: 14px;
-            color: #1a5a30;
-            font-weight: bold;
-        }
-        .done-btn-container {
-            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             justify-content: center;
             margin: 4px 0;
+            width: 100%;
         }
-        .done-btn {
-            background: #2d8a4e;
-            border: 4px solid #1a5a30;
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: bold;
-            padding: 10px 30px;
+        .action-btn {
+            padding: 10px 24px;
             border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 4px solid;
+            cursor: pointer;
+            min-width: 140px;
+        }
+        .action-btn:active {
+            transform: scale(0.94);
+        }
+        .action-btn:disabled {
+            opacity: 0.5;
+            transform: none !important;
+            cursor: not-allowed;
+        }
+        .action-btn.fold {
+            background: #e67e22;
+            border-color: #a04000;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #6b2f00;
+            box-shadow: inset -3px -3px 0 #6b2f00, inset 3px 3px 0 #f39c12;
+        }
+        .action-btn.steam {
+            background: #2d8a4e;
+            border-color: #1a5a30;
+            color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
             box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
         }
-        .done-btn:active {
-            transform: scale(0.94);
+        .action-btn.done {
+            background: #2d8a4e;
+            border-color: #1a5a30;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #0f3a1f;
+            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
         }
-        .done-btn:disabled {
-            opacity: 0.5;
-            transform: none;
+        .action-btn.next {
+            background: #2980b9;
+            border-color: #1a5276;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #0f2f4a;
+            box-shadow: inset -3px -3px 0 #0f2f4a, inset 3px 3px 0 #5dade2;
+        }
+        .action-btn.done:disabled {
+            background: #888;
+            border-color: #555;
+            text-shadow: none;
+            box-shadow: inset -3px -3px 0 #555, inset 3px 3px 0 #aaa;
+        }
+        .steam-timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a5a30;
+            background: #d4e6f1;
+            padding: 4px 16px;
+            border-radius: 30px;
+            border: 3px solid #2d8a4e;
+            text-align: center;
+            min-width: 80px;
         }
         .step-hint {
             font-weight: bold;
@@ -451,6 +502,7 @@
             background: #ffeeee;
             border-radius: 12px;
             border: 2px solid #cc0000;
+            width: 100%;
         }
     </style>
 </head>
@@ -514,20 +566,18 @@
                             <span style="color:#880000; font-weight:bold;">📦 Сборка</span>
                         </div>
                         
-                        <!-- Пароварка -->
-                        <div class="steam-zone" id="steamZone">
-                            <div class="label">♨️ Пароварка</div>
-                            <button class="steam-btn" id="steamActionBtn">Приготовить на пару (5с)</button>
-                            <div class="steam-status" id="steamStatus">Готов к работе</div>
+                        <!-- Кнопки действий -->
+                        <div class="action-buttons" id="actionButtons">
+                            <!-- Сюда будут динамически добавляться кнопки -->
+                        </div>
+                        
+                        <!-- Таймер пароварки -->
+                        <div id="steamTimerContainer" style="display:none; justify-content:center; margin:4px 0;">
+                            <div class="steam-timer" id="steamTimerDisplay">♨️ 5с</div>
                         </div>
                         
                         <!-- Подсказка шага -->
                         <div id="stepHint" class="step-hint">Нажмите "Готовить" у заказа</div>
-                        
-                        <!-- Кнопка ГОТОВО -->
-                        <div class="done-btn-container">
-                            <button class="done-btn" id="doneBtn" disabled>✅ ГОТОВО</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -546,21 +596,18 @@
             'Моти с клубникой': {
                 ingredients: ['рисовое тесто', 'клубника', 'творожный сыр'],
                 price: 15,
-                steps: ['взять тесто', 'добавить клубнику и сыр', 'свернуть'],
                 needsSteam: false,
                 display: '🍓 Моти с клубникой'
             },
             'Дим сам': {
                 ingredients: ['тесто', 'лосось', 'креветка'],
                 price: 20,
-                steps: ['взять тесто', 'добавить лосось и креветку', 'свернуть', 'приготовить на пару'],
                 needsSteam: true,
                 display: '🥟 Дим сам'
             },
             'Моти со смородиной': {
                 ingredients: ['смородина', 'рисовое тесто', 'творожный сыр'],
                 price: 15,
-                steps: ['взять тесто', 'добавить смородину и сыр', 'свернуть'],
                 needsSteam: false,
                 display: '🫐 Моти со смородиной'
             }
@@ -577,14 +624,16 @@
             orderInterval: null,
             timerInterval: null,
             currentCookingOrderIdx: -1,
-            cookingStep: 0,
-            isSteaming: false,
-            steamTimer: null,
-            gameOver: false,
+            currentDishIndex: 0,
             assembled: [],
             currentDishName: null,
             neededIngredients: [],
-            isDoneReady: false,
+            isFolded: false,
+            isSteaming: false,
+            steamSeconds: 5,
+            steamTimer: null,
+            steamInterval: null,
+            gameOver: false,
         };
 
         // DOM refs
@@ -603,9 +652,9 @@
         const recipeContent = $('recipeContent');
         const assemblyArea = $('assemblyArea');
         const stepHint = $('stepHint');
-        const steamActionBtn = $('steamActionBtn');
-        const steamStatus = $('steamStatus');
-        const doneBtn = $('doneBtn');
+        const actionButtons = $('actionButtons');
+        const steamTimerContainer = $('steamTimerContainer');
+        const steamTimerDisplay = $('steamTimerDisplay');
 
         function updateCoins() {
             coinCount.textContent = state.coins;
@@ -613,32 +662,6 @@
 
         function showMessage(msg) {
             messageBar.textContent = msg;
-        }
-
-        function updateDoneButton() {
-            if (state.currentCookingOrderIdx === -1 || state.gameOver || !state.shiftActive) {
-                doneBtn.disabled = true;
-                return;
-            }
-            const order = state.orders[state.currentCookingOrderIdx];
-            if (!order || order.completed) {
-                doneBtn.disabled = true;
-                return;
-            }
-            const recipe = MENU[state.currentDishName];
-            if (!recipe) { doneBtn.disabled = true; return; }
-            const steps = recipe.steps;
-            const stepIdx = state.cookingStep;
-            const allIngredients = state.neededIngredients.every(i => state.assembled.includes(i));
-            const allStepsDone = stepIdx >= steps.length;
-            const isReady = allIngredients && allStepsDone && !state.isSteaming;
-            state.isDoneReady = isReady;
-            doneBtn.disabled = !isReady;
-            if (isReady) {
-                doneBtn.textContent = '✅ ГОТОВО';
-            } else {
-                doneBtn.textContent = '⏳ Готовим...';
-            }
         }
 
         // ---------- GAME MECHANICS ----------
@@ -658,15 +681,16 @@
 
             const order = {
                 dishes: dishes,
-                remaining: 50,
-                timer: 50,
+                remaining: 30,
+                timer: 30,
                 cooked: false,
                 completed: false,
+                dishCompleted: new Array(dishes.length).fill(false),
                 index: Date.now() + Math.random()
             };
             state.orders.push(order);
             renderOrders();
-            showMessage(`📩 Новый заказ! ${dishes.join(', ')}`);
+            showMessage(`📩 Новый заказ! ${dishes.map(d => MENU[d].display).join(', ')}`);
         }
 
         function renderOrders() {
@@ -675,14 +699,26 @@
                 if (order.completed) return;
                 const div = document.createElement('div');
                 div.className = 'order-item';
-                const timerHtml = `<span class="timer">⏱ ${Math.ceil(order.remaining)}с</span>`;
-                const dishesHtml = order.dishes.map(d => {
+                const remaining = Math.ceil(order.remaining);
+                const timerClass = remaining <= 5 ? 'timer urgent' : 'timer';
+                const timerHtml = `<span class="${timerClass}">⏱ ${remaining}с</span>`;
+                
+                let dishesHtml = order.dishes.map((d, i) => {
                     const display = MENU[d]?.display || d;
-                    return `<span class="ingredient-tag">${display}</span>`;
+                    const isDone = order.dishCompleted[i];
+                    const isCurrent = state.currentCookingOrderIdx === idx && state.currentDishIndex === i && !isDone;
+                    let cls = 'dish-item';
+                    if (isDone) cls += ' done';
+                    if (isCurrent) cls += ' current';
+                    return `<span class="${cls}">${display} ${isDone ? '✅' : ''}</span>`;
                 }).join(' ');
+                
+                const allDone = order.dishCompleted.every(v => v === true);
+                const isFullyCooked = allDone;
+                
                 div.innerHTML = `<div style="display:flex; justify-content:space-between;">${timerHtml} <span>${order.dishes.length} бл.</span></div>
                                  <div class="order-recipe">${dishesHtml}</div>
-                                 ${!order.cooked ? `<button class="cook-btn" data-orderidx="${idx}">🔪 Готовить</button>` : '<span style="color:#2d8a4e;">✅ Готово!</span>'}`;
+                                 ${!isFullyCooked ? `<button class="cook-btn" data-orderidx="${idx}">🔪 Готовить</button>` : '<span style="color:#2d8a4e;">✅ Заказ готов!</span>'}`;
                 const btn = div.querySelector('.cook-btn');
                 if (btn) {
                     btn.addEventListener('click', (e) => {
@@ -698,29 +734,53 @@
         function startCooking(orderIdx) {
             if (state.gameOver || !state.shiftActive) return;
             const order = state.orders[orderIdx];
-            if (!order || order.completed || order.cooked) return;
+            if (!order || order.completed) return;
+            
+            const allDone = order.dishCompleted.every(v => v === true);
+            if (allDone) {
+                showMessage('✅ Все блюда в этом заказе уже готовы!');
+                return;
+            }
+            
             if (state.currentCookingOrderIdx !== -1) {
-                // Проверяем, не готово ли текущее блюдо
                 const currentOrder = state.orders[state.currentCookingOrderIdx];
-                if (currentOrder && !currentOrder.completed && !currentOrder.cooked) {
-                    showMessage('⚠️ Сначала закончите текущее блюдо');
-                    return;
-                }
-                // Если текущее готово, но не отдано - разрешаем
-                if (currentOrder && currentOrder.cooked && !currentOrder.completed) {
-                    showMessage('⚠️ Сначала отдайте готовое блюдо (кнопка ГОТОВО)');
-                    return;
+                if (currentOrder && !currentOrder.completed) {
+                    const currentAllDone = currentOrder.dishCompleted.every(v => v === true);
+                    if (!currentAllDone) {
+                        showMessage('⚠️ Сначала закончите текущее блюдо');
+                        return;
+                    }
                 }
             }
+            
+            let dishIdx = -1;
+            for (let i = 0; i < order.dishes.length; i++) {
+                if (!order.dishCompleted[i]) {
+                    dishIdx = i;
+                    break;
+                }
+            }
+            if (dishIdx === -1) {
+                showMessage('✅ Все блюда уже готовы!');
+                return;
+            }
+            
+            if (state.steamTimer) { clearTimeout(state.steamTimer); state.steamTimer = null; }
+            if (state.steamInterval) { clearInterval(state.steamInterval); state.steamInterval = null; }
+            state.isSteaming = false;
+            state.steamSeconds = 5;
+            steamTimerContainer.style.display = 'none';
+            
             state.currentCookingOrderIdx = orderIdx;
-            state.cookingStep = 0;
+            state.currentDishIndex = dishIdx;
             state.assembled = [];
-            state.currentDishName = order.dishes[0];
+            state.currentDishName = order.dishes[dishIdx];
             state.neededIngredients = MENU[state.currentDishName].ingredients.slice();
-            order.cooked = false;
-            state.isDoneReady = false;
+            state.isFolded = false;
+            
             renderCookingUI();
-            showMessage(`🔪 Готовим ${MENU[state.currentDishName].display}`);
+            renderOrders();
+            showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${dishIdx+1}/${order.dishes.length})`);
         }
 
         function renderCookingUI() {
@@ -729,56 +789,296 @@
                 recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
                 assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
                 stepHint.textContent = 'Нажмите "Готовить" у заказа';
-                updateDoneButton();
+                actionButtons.innerHTML = '';
                 return;
             }
             const recipe = MENU[state.currentDishName];
             if (!recipe) return;
 
-            // РЕЦЕПТ СВЕРХУ
+            const totalDishes = order.dishes.length;
+            const doneCount = order.dishCompleted.filter(v => v).length;
+            const progressText = totalDishes > 1 ? `Блюдо ${state.currentDishIndex+1}/${totalDishes} (готово ${doneCount}/${totalDishes})` : '';
+
             let recipeHtml = `<div class="dish-name">${recipe.display}</div>`;
             recipeHtml += `<div class="ing-list">`;
             recipe.ingredients.forEach(ing => {
                 const has = state.assembled.includes(ing);
-                recipeHtml += `<span style="${has ? 'background:#7ae07a; border-color:#2d8a4e;' : ''}">${ing} ${has ? '✅' : ''}</span>`;
+                recipeHtml += `<span class="${has ? 'done' : ''}">${ing} ${has ? '✅' : ''}</span>`;
             });
             recipeHtml += `</div>`;
             if (recipe.needsSteam) {
                 recipeHtml += `<div style="margin-top:4px; color:#1a5a30;">♨️ Требуется пароварка</div>`;
             }
+            if (progressText) {
+                recipeHtml += `<div class="progress-info">${progressText}</div>`;
+            }
             recipeContent.innerHTML = recipeHtml;
 
-            // СБОРКА
             let assemblyHtml = state.assembled.length ? 
                 state.assembled.map(a => `<span class="placed">${a}</span>`).join(' ') : 
                 '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
             assemblyArea.innerHTML = assemblyHtml;
 
-            // ШАГ
-            const steps = recipe.steps;
-            const stepIdx = state.cookingStep;
-            if (stepIdx < steps.length) {
-                let stepText = steps[stepIdx];
-                if (stepText.includes('пару')) stepText = '♨️ ' + stepText;
-                stepHint.textContent = `Шаг ${stepIdx+1}/${steps.length}: ${stepText}`;
-            } else {
-                stepHint.textContent = '✅ Все шаги выполнены! Нажмите ГОТОВО';
+            const allIngredients = state.neededIngredients.every(i => state.assembled.includes(i));
+            const isDishDone = order.dishCompleted[state.currentDishIndex];
+            const allDone = order.dishCompleted.every(v => v === true);
+            
+            let buttonsHtml = '';
+            
+            if (allDone) {
+                buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ ЗАКАЗ</button>`;
+            } else if (isDishDone) {
+                if (order.dishes.length === 1) {
+                    buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ ЗАКАЗ</button>`;
+                } else {
+                    buttonsHtml = `<button class="action-btn next" id="nextDishBtn">➡️ СЛЕДУЮЩЕЕ БЛЮДО</button>`;
+                }
+            } else if (state.isSteaming) {
+                buttonsHtml = `<div style="display:flex; align-items:center; gap:12px;">
+                                <span style="font-weight:bold; color:#1a5a30;">♨️ Парится...</span>
+                                <span class="steam-timer">${state.steamSeconds}с</span>
+                              </div>`;
+            } else if (allIngredients && !state.isFolded) {
+                buttonsHtml = `<button class="action-btn fold" id="foldBtn">📦 СВЕРНУТЬ</button>`;
+            } else if (state.isFolded && !isDishDone) {
+                if (recipe.needsSteam) {
+                    buttonsHtml = `<button class="action-btn steam" id="steamBtn">♨️ НА ПАРУ (5с)</button>`;
+                } else {
+                    order.dishCompleted[state.currentDishIndex] = true;
+                    const allDoneNow = order.dishCompleted.every(v => v === true);
+                    if (allDoneNow) {
+                        showMessage(`✅ Все блюда в заказе готовы!`);
+                    } else {
+                        showMessage(`✅ ${recipe.display} готов!`);
+                    }
+                    renderCookingUI();
+                    renderOrders();
+                    return;
+                }
             }
 
-            // Обновляем кнопку ГОТОВО
-            updateDoneButton();
+            actionButtons.innerHTML = buttonsHtml;
 
-            // Обновляем статус пароварки
-            if (state.isSteaming) {
-                steamStatus.textContent = '🔥 Парится...';
-                steamActionBtn.disabled = true;
+            const foldBtn = document.getElementById('foldBtn');
+            if (foldBtn) {
+                foldBtn.addEventListener('click', () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    const allPresent = state.neededIngredients.every(i => state.assembled.includes(i));
+                    if (!allPresent) {
+                        showMessage('⚠️ Не все ингредиенты добавлены');
+                        return;
+                    }
+                    state.isFolded = true;
+                    showMessage('✅ Свернули!');
+                    renderCookingUI();
+                });
+            }
+
+            const steamBtn = document.getElementById('steamBtn');
+            if (steamBtn) {
+                steamBtn.addEventListener('click', () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    if (state.isSteaming) return;
+                    if (!state.isFolded) {
+                        showMessage('⚠️ Сначала сверните блюдо');
+                        return;
+                    }
+                    startSteaming();
+                });
+            }
+
+            const nextBtn = document.getElementById('nextDishBtn');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    const allDoneNow = order.dishCompleted.every(v => v === true);
+                    if (allDoneNow) {
+                        completeOrder();
+                        return;
+                    }
+                    let nextDishIdx = -1;
+                    for (let i = state.currentDishIndex + 1; i < order.dishes.length; i++) {
+                        if (!order.dishCompleted[i]) {
+                            nextDishIdx = i;
+                            break;
+                        }
+                    }
+                    if (nextDishIdx === -1) {
+                        completeOrder();
+                        return;
+                    }
+                    state.currentDishIndex = nextDishIdx;
+                    state.assembled = [];
+                    state.currentDishName = order.dishes[nextDishIdx];
+                    state.neededIngredients = MENU[state.currentDishName].ingredients.slice();
+                    state.isFolded = false;
+                    state.isSteaming = false;
+                    steamTimerContainer.style.display = 'none';
+                    renderCookingUI();
+                    renderOrders();
+                    showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${nextDishIdx+1}/${order.dishes.length})`);
+                });
+            }
+
+            const finishBtn = document.getElementById('finishOrderBtn');
+            if (finishBtn) {
+                finishBtn.addEventListener('click', () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    completeOrder();
+                });
+            }
+
+            // Подсказка
+            if (allDone) {
+                stepHint.textContent = '✅ Все блюда готовы! Завершите заказ';
+            } else if (isDishDone) {
+                if (order.dishes.length === 1) {
+                    stepHint.textContent = '✅ Блюдо готово! Завершите заказ';
+                } else {
+                    stepHint.textContent = '✅ Блюдо готово! Переходите к следующему';
+                }
+            } else if (state.isSteaming) {
+                stepHint.textContent = `♨️ Приготовление на пару... ${state.steamSeconds}с`;
+            } else if (allIngredients && !state.isFolded) {
+                stepHint.textContent = '📦 Все ингредиенты собраны! Нажмите СВЕРНУТЬ';
+            } else if (state.isFolded && !isDishDone && recipe.needsSteam) {
+                stepHint.textContent = '♨️ Нажмите НА ПАРУ (5 секунд)';
+            } else if (state.isFolded && !isDishDone && !recipe.needsSteam) {
+                stepHint.textContent = '✅ Блюдо готово!';
             } else {
-                steamStatus.textContent = 'Готов к работе';
-                steamActionBtn.disabled = false;
+                const missing = state.neededIngredients.filter(i => !state.assembled.includes(i));
+                if (missing.length > 0) {
+                    stepHint.textContent = `📦 Добавьте: ${missing.join(', ')}`;
+                } else {
+                    stepHint.textContent = 'Продолжайте приготовление';
+                }
             }
         }
 
-        // Обработчик для ящиков с ингредиентами
+        function startSteaming() {
+            if (state.isSteaming) return;
+            state.isSteaming = true;
+            state.steamSeconds = 5;
+            steamTimerContainer.style.display = 'flex';
+            steamTimerDisplay.textContent = `♨️ ${state.steamSeconds}с`;
+            
+            renderCookingUI();
+            
+            state.steamInterval = setInterval(() => {
+                state.steamSeconds--;
+                steamTimerDisplay.textContent = `♨️ ${state.steamSeconds}с`;
+                if (state.steamSeconds <= 0) {
+                    clearInterval(state.steamInterval);
+                    state.steamInterval = null;
+                    state.isSteaming = false;
+                    steamTimerContainer.style.display = 'none';
+                    
+                    const order = state.orders[state.currentCookingOrderIdx];
+                    if (order && !order.completed) {
+                        order.dishCompleted[state.currentDishIndex] = true;
+                        const allDone = order.dishCompleted.every(v => v === true);
+                        if (allDone) {
+                            showMessage(`✅ Все блюда в заказе готовы!`);
+                        } else {
+                            showMessage(`✅ ${MENU[state.currentDishName].display} готов!`);
+                        }
+                        renderCookingUI();
+                        renderOrders();
+                    }
+                }
+            }, 1000);
+        }
+
+        function completeOrder() {
+            const order = state.orders[state.currentCookingOrderIdx];
+            if (!order || order.completed) return;
+            
+            const allDone = order.dishCompleted.every(v => v === true);
+            if (!allDone) {
+                showMessage('⚠️ Не все блюда в заказе готовы');
+                return;
+            }
+            
+            let totalPrice = 0;
+            order.dishes.forEach(d => {
+                totalPrice += MENU[d]?.price || 15;
+            });
+            
+            state.coins += totalPrice;
+            state.totalOrdersServed += order.dishes.length;
+            order.completed = true;
+            updateCoins();
+            showMessage(`💰 +${totalPrice} монет за заказ!`);
+            
+            state.currentCookingOrderIdx = -1;
+            state.currentDishIndex = 0;
+            state.assembled = [];
+            state.currentDishName = null;
+            state.isFolded = false;
+            if (state.steamTimer) { clearTimeout(state.steamTimer); state.steamTimer = null; }
+            if (state.steamInterval) { clearInterval(state.steamInterval); state.steamInterval = null; }
+            state.isSteaming = false;
+            steamTimerContainer.style.display = 'none';
+            
+            recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
+            assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+            stepHint.textContent = 'Нажмите "Готовить" у заказа';
+            actionButtons.innerHTML = '';
+            renderOrders();
+            
+            if (state.coins < -100) {
+                gameOver('💸 Банкрот! Ты проиграл.');
+            }
+        }
+
+        function gameOver(reason) {
+            state.gameOver = true;
+            state.shiftActive = false;
+            if (state.orderInterval) clearInterval(state.orderInterval);
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            if (state.steamInterval) clearInterval(state.steamInterval);
+            if (state.steamTimer) clearTimeout(state.steamTimer);
+            showMessage(`⛔ ${reason}`);
+            kitchenStatus.textContent = '🚫 Игра окончена';
+            shiftBtn.textContent = '🔁 Заново';
+            shiftBtn.onclick = () => location.reload();
+            actionButtons.innerHTML = '';
+        }
+
+        function updateTimers() {
+            state.orders.forEach((order, idx) => {
+                if (order.completed) return;
+                order.remaining -= 0.1;
+                if (order.remaining <= 0) {
+                    order.remaining = 0;
+                    const penalty = order.dishes.length * 10;
+                    state.coins -= penalty;
+                    order.completed = true;
+                    if (state.currentCookingOrderIdx === idx) {
+                        state.currentCookingOrderIdx = -1;
+                        state.currentDishIndex = 0;
+                        state.assembled = [];
+                        state.currentDishName = null;
+                        state.isFolded = false;
+                        if (state.steamInterval) clearInterval(state.steamInterval);
+                        state.isSteaming = false;
+                        steamTimerContainer.style.display = 'none';
+                        recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
+                        assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+                        stepHint.textContent = 'Нажмите "Готовить" у заказа';
+                        actionButtons.innerHTML = '';
+                    }
+                    showMessage(`⏰ Время вышло! Штраф -${penalty} монет`);
+                    updateCoins();
+                    if (state.coins < -100) {
+                        gameOver('💸 Банкрот! Ты проиграл.');
+                    }
+                    renderOrders();
+                }
+            });
+            renderOrders();
+        }
+
         document.querySelectorAll('.ingredient-box').forEach(box => {
             box.addEventListener('click', function() {
                 if (state.gameOver || !state.shiftActive || state.currentCookingOrderIdx === -1) {
@@ -789,6 +1089,10 @@
                 if (!order || !state.currentDishName) return;
                 if (order.completed) {
                     showMessage('⚠️ Этот заказ уже выполнен');
+                    return;
+                }
+                if (order.dishCompleted[state.currentDishIndex]) {
+                    showMessage('⚠️ Это блюдо уже готово');
                     return;
                 }
                 const recipe = MENU[state.currentDishName];
@@ -803,172 +1107,21 @@
                     showMessage(`⚠️ ${ing} уже добавлен`);
                     return;
                 }
-                // Добавляем ингредиент
+                if (state.isFolded) {
+                    showMessage('⚠️ Блюдо уже свернуто, нельзя добавлять ингредиенты');
+                    return;
+                }
+                if (state.isSteaming) {
+                    showMessage('⚠️ Идёт приготовление на пару, подождите');
+                    return;
+                }
+                
                 state.assembled.push(ing);
                 showMessage(`✅ Добавлен ${ing}`);
-                
-                // Проверяем, не все ли ингредиенты собраны
-                const allPresent = state.neededIngredients.every(i => state.assembled.includes(i));
-                if (allPresent) {
-                    // Проверяем, нужно ли перейти на следующий шаг
-                    const steps = recipe.steps;
-                    const stepIdx = state.cookingStep;
-                    if (stepIdx < steps.length) {
-                        const step = steps[stepIdx];
-                        if (step.includes('взять') || step.includes('добавить')) {
-                            // Если все ингредиенты собраны, продвигаем шаг
-                            state.cookingStep++;
-                            showMessage('✅ Все ингредиенты собраны!');
-                        }
-                    }
-                }
                 renderCookingUI();
                 renderOrders();
             });
         });
-
-        // Пароварка
-        steamActionBtn.addEventListener('click', () => {
-            if (state.gameOver || !state.shiftActive || state.currentCookingOrderIdx === -1) {
-                showMessage('⚠️ Сначала начните готовить блюдо');
-                return;
-            }
-            if (state.isSteaming) {
-                showMessage('⏳ Пароварка уже работает');
-                return;
-            }
-            const order = state.orders[state.currentCookingOrderIdx];
-            if (!order || !state.currentDishName) return;
-            const recipe = MENU[state.currentDishName];
-            if (!recipe) return;
-            if (!recipe.needsSteam) {
-                showMessage('❌ Это блюдо не требует пароварки');
-                return;
-            }
-            const allPresent = state.neededIngredients.every(i => state.assembled.includes(i));
-            if (!allPresent) {
-                showMessage('⚠️ Сначала соберите все ингредиенты');
-                return;
-            }
-            // Проверяем, на правильном ли мы шаге
-            const steps = recipe.steps;
-            const stepIdx = state.cookingStep;
-            if (stepIdx >= steps.length || !steps[stepIdx].includes('пару')) {
-                showMessage('⏳ Пар уже был использован или ещё не нужен');
-                return;
-            }
-
-            state.isSteaming = true;
-            steamActionBtn.disabled = true;
-            steamStatus.textContent = '🔥 Парится... 5 сек';
-            showMessage('♨️ Приготовление на пару...');
-            state.steamTimer = setTimeout(() => {
-                state.isSteaming = false;
-                steamActionBtn.disabled = false;
-                steamStatus.textContent = 'Готов к работе';
-                // Продвигаем шаг с паром
-                const currentSteps = recipe.steps;
-                const currentStepIdx = state.cookingStep;
-                if (currentStepIdx < currentSteps.length && currentSteps[currentStepIdx].includes('пару')) {
-                    state.cookingStep++;
-                }
-                renderCookingUI();
-                showMessage('✅ Пар завершён!');
-                renderOrders();
-                updateDoneButton();
-            }, 5000);
-        });
-
-        // КНОПКА ГОТОВО
-        doneBtn.addEventListener('click', () => {
-            if (state.gameOver || !state.shiftActive) return;
-            if (state.currentCookingOrderIdx === -1) {
-                showMessage('⚠️ Нет активного заказа');
-                return;
-            }
-            const order = state.orders[state.currentCookingOrderIdx];
-            if (!order || order.completed) {
-                showMessage('⚠️ Заказ уже выполнен');
-                return;
-            }
-            if (!state.isDoneReady) {
-                showMessage('⚠️ Блюдо ещё не готово');
-                return;
-            }
-            // Отдаём заказ
-            const dishName = state.currentDishName;
-            const price = MENU[dishName]?.price || 15;
-            state.coins += price;
-            state.totalOrdersServed++;
-            order.completed = true;
-            order.cooked = true;
-            updateCoins();
-            showMessage(`💰 +${price} монет за ${MENU[dishName].display}`);
-            
-            // Сбрасываем состояние
-            state.currentCookingOrderIdx = -1;
-            state.assembled = [];
-            state.currentDishName = null;
-            state.isDoneReady = false;
-            doneBtn.disabled = true;
-            doneBtn.textContent = '✅ ГОТОВО';
-            recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
-            assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
-            stepHint.textContent = 'Нажмите "Готовить" у заказа';
-            renderOrders();
-            
-            if (state.coins < -100) {
-                gameOver('💸 Банкрот! Ты проиграл.');
-            }
-        });
-
-        function gameOver(reason) {
-            state.gameOver = true;
-            state.shiftActive = false;
-            if (state.orderInterval) clearInterval(state.orderInterval);
-            if (state.timerInterval) clearInterval(state.timerInterval);
-            if (state.steamTimer) clearTimeout(state.steamTimer);
-            showMessage(`⛔ ${reason}`);
-            kitchenStatus.textContent = '🚫 Игра окончена';
-            shiftBtn.textContent = '🔁 Заново';
-            shiftBtn.onclick = () => location.reload();
-            doneBtn.disabled = true;
-        }
-
-        function updateTimers() {
-            state.orders.forEach((order, idx) => {
-                if (order.completed) return;
-                order.remaining -= 0.1;
-                if (order.remaining <= 0) {
-                    order.remaining = 0;
-                    const penalty = order.dishes.length * 10;
-                    state.coins -= penalty;
-                    order.completed = true;
-                    // Если это текущий готовящийся заказ - сбрасываем
-                    if (state.currentCookingOrderIdx === idx) {
-                        state.currentCookingOrderIdx = -1;
-                        state.assembled = [];
-                        state.currentDishName = null;
-                        state.isDoneReady = false;
-                        doneBtn.disabled = true;
-                        recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
-                        assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
-                        stepHint.textContent = 'Нажмите "Готовить" у заказа';
-                    }
-                    showMessage(`⏰ Время вышло! Штраф -${penalty} монет`);
-                    updateCoins();
-                    if (state.coins < -100) {
-                        gameOver('💸 Банкрот! Ты проиграл.');
-                    }
-                    renderOrders();
-                }
-            });
-            renderOrders();
-            // Обновляем кнопку Done если активен заказ
-            if (state.currentCookingOrderIdx !== -1) {
-                updateDoneButton();
-            }
-        }
 
         function startShift() {
             if (state.gameOver) return;
@@ -978,8 +1131,10 @@
             state.totalOrdersServed = 0;
             state.coins = 0;
             state.currentCookingOrderIdx = -1;
+            state.currentDishIndex = 0;
             state.assembled = [];
             state.currentDishName = null;
+            state.isFolded = false;
             updateCoins();
             shiftBtn.textContent = '⏳ Смена идёт...';
             kitchenStatus.textContent = '🍳 Принимай заказы!';
@@ -990,7 +1145,7 @@
                 if (state.shiftActive && !state.gameOver) {
                     generateOrder();
                 }
-            }, 40000);
+            }, 15000);
             if (state.timerInterval) clearInterval(state.timerInterval);
             state.timerInterval = setInterval(() => {
                 if (state.shiftActive && !state.gameOver) {
@@ -1000,7 +1155,7 @@
             renderOrders();
             recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
             stepHint.textContent = 'Нажмите "Готовить" у заказа';
-            doneBtn.disabled = true;
+            actionButtons.innerHTML = '';
         }
 
         // ---------- NAVIGATION ----------

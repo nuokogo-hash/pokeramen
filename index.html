@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ПОКЕ РАМЕН</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             user-select: none;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
         body {
             background: #1a0a0a;
@@ -19,6 +22,7 @@
             justify-content: center;
             align-items: center;
             touch-action: manipulation;
+            padding: 4px;
         }
         #game-container {
             width: 100%;
@@ -27,42 +31,47 @@
             max-height: 780px;
             background: #ffffff;
             border: 6px solid #cc0000;
-            border-radius: 28px;
+            border-radius: 0px;
             overflow: hidden;
             position: relative;
             box-shadow: 0 0 0 4px #660000;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
+            display: flex;
+            flex-direction: column;
         }
         .pixel-text {
-            font-size: 18px;
+            font-size: 14px;
             letter-spacing: 1px;
             color: #000000;
             font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            line-height: 1.4;
         }
         .pixel-btn {
             background: #cc0000;
             border: 4px solid #880000;
             color: #ffffff;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
             padding: 14px 24px;
-            border-radius: 16px;
+            border-radius: 0px;
             text-transform: uppercase;
-            box-shadow: inset -3px -3px 0 #660000, inset 3px 3px 0 #ff4444;
+            box-shadow: inset -4px -4px 0 #660000, inset 4px 4px 0 #ff4444;
             transition: 0.05s linear;
             touch-action: manipulation;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
+            font-family: 'Press Start 2P', monospace;
             text-shadow: 2px 2px 0 #550000;
             letter-spacing: 2px;
+            image-rendering: pixelated;
         }
         .pixel-btn:active {
             transform: scale(0.94);
-            box-shadow: inset 3px 3px 0 #660000, inset -3px -3px 0 #ff4444;
+            box-shadow: inset 4px 4px 0 #660000, inset -4px -4px 0 #ff4444;
         }
         .pixel-btn.small {
-            font-size: 16px;
+            font-size: 14px;
             padding: 10px 16px;
         }
         .pixel-btn.white {
@@ -70,26 +79,26 @@
             border: 4px solid #cc0000;
             color: #000000;
             text-shadow: none;
-            box-shadow: inset -3px -3px 0 #aaaaaa, inset 3px 3px 0 #ffffff;
+            box-shadow: inset -4px -4px 0 #aaaaaa, inset 4px 4px 0 #ffffff;
         }
         .pixel-btn.green {
             background: #2d8a4e;
             border: 4px solid #1a5a30;
             color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
+            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
         }
         .pixel-btn.orange {
             background: #e67e22;
             border: 4px solid #a04000;
             color: #ffffff;
             text-shadow: 2px 2px 0 #6b2f00;
-            box-shadow: inset -3px -3px 0 #6b2f00, inset 3px 3px 0 #f39c12;
+            box-shadow: inset -4px -4px 0 #6b2f00, inset 4px 4px 0 #f39c12;
         }
         .pixel-btn:disabled {
             opacity: 0.5;
             transform: none !important;
-            box-shadow: inset -3px -3px 0 #660000, inset 3px 3px 0 #ff4444 !important;
+            box-shadow: inset -4px -4px 0 #660000, inset 4px 4px 0 #ff4444 !important;
         }
         .screen {
             width: 100%;
@@ -104,6 +113,7 @@
             top: 0;
             left: 0;
             transition: opacity 0.2s;
+            overflow: hidden;
         }
         .hidden {
             opacity: 0;
@@ -115,13 +125,14 @@
             gap: 24px;
         }
         #start-screen h1 {
-            font-size: 48px;
+            font-size: 42px;
             color: #cc0000;
             text-shadow: 4px 4px 0 #880000, 6px 6px 0 #ffffff;
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             text-align: center;
             line-height: 1.2;
             margin-bottom: 12px;
+            font-family: 'Press Start 2P', monospace;
         }
         #name-screen {
             background: #ffffff;
@@ -132,12 +143,12 @@
             background: #ffffff;
             border: 4px solid #cc0000;
             color: #000000;
-            font-size: 24px;
+            font-size: 20px;
             padding: 14px 18px;
             width: 80%;
             text-align: center;
-            border-radius: 30px;
-            font-family: 'Courier New', monospace;
+            border-radius: 0px;
+            font-family: 'Press Start 2P', monospace;
             outline: none;
             font-weight: bold;
         }
@@ -149,18 +160,20 @@
             padding: 24px;
         }
         #rules-screen p {
-            font-size: 20px;
+            font-size: 16px;
             color: #000000;
-            line-height: 1.5;
+            line-height: 1.6;
             max-width: 90%;
             font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
         }
         #game-screen {
             background: #ffffff;
             z-index: 5;
-            padding: 8px;
+            padding: 6px;
             justify-content: flex-start;
             gap: 4px;
+            overflow: hidden;
         }
         .game-header {
             display: flex;
@@ -168,30 +181,36 @@
             width: 100%;
             padding: 4px 8px;
             background: #cc0000;
-            border: 3px solid #880000;
-            border-radius: 20px;
-            margin-bottom: 4px;
+            border: 4px solid #880000;
+            border-radius: 0px;
+            flex-shrink: 0;
         }
         .coin-display {
             background: #ffffff;
             padding: 6px 16px;
-            border-radius: 40px;
-            border: 3px solid #880000;
+            border-radius: 0px;
+            border: 4px solid #880000;
             color: #000000;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 6px;
+            font-family: 'Press Start 2P', monospace;
         }
         .shift-btn {
             background: #ffffff;
-            border: 3px solid #880000;
+            border: 4px solid #880000;
             color: #cc0000;
-            font-size: 20px;
+            font-size: 16px;
             padding: 6px 18px;
-            border-radius: 40px;
+            border-radius: 0px;
             font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            cursor: pointer;
+        }
+        .shift-btn:active {
+            transform: scale(0.94);
         }
         .kitchen-area {
             display: flex;
@@ -199,44 +218,48 @@
             width: 100%;
             gap: 6px;
             min-height: 0;
+            overflow: hidden;
         }
         .kitchen {
             flex: 2;
             background: #ffdddd;
             border: 4px solid #cc0000;
-            border-radius: 24px;
+            border-radius: 0px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 8px;
-            position: relative;
+            padding: 6px;
             overflow-y: auto;
+            min-width: 0;
         }
         .order-panel {
             flex: 1.2;
             background: #ffeeee;
             border: 4px solid #cc0000;
-            border-radius: 24px;
+            border-radius: 0px;
             display: flex;
             flex-direction: column;
-            padding: 8px;
-            gap: 6px;
+            padding: 6px;
+            gap: 4px;
             overflow-y: auto;
-            max-height: 100%;
+            min-width: 0;
         }
         .order-item {
             background: #ffffff;
-            border: 3px solid #cc0000;
-            border-radius: 16px;
-            padding: 6px;
-            font-size: 14px;
+            border: 4px solid #cc0000;
+            border-radius: 0px;
+            padding: 4px;
+            font-size: 10px;
             color: #000000;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
         }
         .order-item .timer {
             color: #cc0000;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 14px;
+            font-family: 'Press Start 2P', monospace;
         }
         .order-item .timer.urgent {
             color: #ff0000;
@@ -254,12 +277,13 @@
         }
         .order-recipe .dish-item {
             background: #ffcccc;
-            padding: 2px 10px;
-            border-radius: 30px;
-            font-size: 12px;
-            border: 2px solid #cc0000;
+            padding: 2px 8px;
+            border-radius: 0px;
+            font-size: 9px;
+            border: 3px solid #cc0000;
             color: #000000;
             font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
         }
         .order-recipe .dish-item.done {
             background: #7ae07a;
@@ -276,11 +300,12 @@
             background: #cc0000;
             border: 3px solid #880000;
             color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 3px 10px;
+            border-radius: 0px;
+            font-size: 10px;
             font-weight: bold;
             cursor: pointer;
+            font-family: 'Press Start 2P', monospace;
         }
         .cook-btn:active {
             transform: scale(0.92);
@@ -307,15 +332,19 @@
         .message-bar {
             width: 100%;
             background: #cc0000;
-            border: 3px solid #880000;
-            border-radius: 30px;
-            padding: 6px 12px;
+            border: 4px solid #880000;
+            border-radius: 0px;
+            padding: 4px 12px;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 12px;
             text-align: center;
-            min-height: 44px;
-            margin-top: 4px;
+            min-height: 36px;
+            flex-shrink: 0;
             font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .flex-row {
             display: flex;
@@ -328,38 +357,43 @@
         .kitchen-layout {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
+            flex: 1;
+            overflow: hidden;
         }
         .recipe-display {
             background: #ffffff;
-            border: 3px solid #cc0000;
-            border-radius: 16px;
-            padding: 8px;
+            border: 4px solid #cc0000;
+            border-radius: 0px;
+            padding: 6px;
             text-align: center;
             font-weight: bold;
             color: #000000;
-            font-size: 16px;
-            margin-bottom: 4px;
+            font-size: 12px;
             width: 100%;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
         }
         .recipe-display .dish-name {
             color: #cc0000;
-            font-size: 20px;
+            font-size: 16px;
+            font-family: 'Press Start 2P', monospace;
         }
         .recipe-display .ing-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
             justify-content: center;
             margin-top: 4px;
         }
         .recipe-display .ing-list span {
             background: #ffdddd;
-            padding: 2px 12px;
-            border-radius: 30px;
-            border: 2px solid #cc0000;
-            font-size: 14px;
+            padding: 2px 10px;
+            border-radius: 0px;
+            border: 3px solid #cc0000;
+            font-size: 10px;
+            font-family: 'Press Start 2P', monospace;
         }
         .recipe-display .ing-list span.done {
             background: #7ae07a;
@@ -367,77 +401,88 @@
         }
         .recipe-display .progress-info {
             margin-top: 4px;
-            font-size: 14px;
+            font-size: 10px;
             color: #880000;
+            font-family: 'Press Start 2P', monospace;
         }
         .ingredient-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
             justify-content: center;
             background: #ffcccc;
-            padding: 6px;
-            border-radius: 16px;
-            border: 3px solid #cc0000;
+            padding: 4px;
+            border-radius: 0px;
+            border: 4px solid #cc0000;
+            flex-shrink: 0;
         }
         .ingredient-box {
             background: #ffffff;
             border: 3px solid #cc0000;
-            border-radius: 12px;
-            padding: 6px 14px;
+            border-radius: 0px;
+            padding: 4px 10px;
             font-weight: bold;
             color: #000000;
-            font-size: 14px;
+            font-size: 10px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             cursor: pointer;
-            box-shadow: inset -2px -2px 0 #880000;
+            box-shadow: inset -3px -3px 0 #880000;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
         }
         .ingredient-box:active {
             transform: scale(0.95);
         }
         .ingredient-box .emoji {
-            font-size: 20px;
+            font-size: 16px;
         }
         .assembly-zone {
             background: #ffffff;
-            border: 3px dashed #cc0000;
-            border-radius: 16px;
-            padding: 8px;
-            min-height: 46px;
+            border: 4px dashed #cc0000;
+            border-radius: 0px;
+            padding: 6px;
+            min-height: 40px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin: 4px 0;
+            gap: 4px;
+            flex-shrink: 0;
         }
         .assembly-zone .placed {
             background: #ffcccc;
-            border: 2px solid #cc0000;
-            padding: 4px 12px;
-            border-radius: 30px;
+            border: 3px solid #cc0000;
+            padding: 3px 10px;
+            border-radius: 0px;
             color: #000000;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 10px;
+            font-family: 'Press Start 2P', monospace;
         }
         .action-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
-            margin: 4px 0;
+            flex-shrink: 0;
             width: 100%;
         }
         .action-btn {
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 18px;
+            padding: 8px 20px;
+            border-radius: 0px;
+            font-size: 14px;
             font-weight: bold;
             border: 4px solid;
             cursor: pointer;
-            min-width: 140px;
+            min-width: 120px;
+            font-family: 'Press Start 2P', monospace;
+            background: #2d8a4e;
+            border-color: #1a5a30;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #0f3a1f;
+            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
         }
         .action-btn:active {
             transform: scale(0.94);
@@ -452,57 +497,102 @@
             border-color: #a04000;
             color: #ffffff;
             text-shadow: 2px 2px 0 #6b2f00;
-            box-shadow: inset -3px -3px 0 #6b2f00, inset 3px 3px 0 #f39c12;
+            box-shadow: inset -4px -4px 0 #6b2f00, inset 4px 4px 0 #f39c12;
         }
         .action-btn.steam {
             background: #2d8a4e;
             border-color: #1a5a30;
             color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
+            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
         }
         .action-btn.done {
             background: #2d8a4e;
             border-color: #1a5a30;
             color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
+            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
         }
         .action-btn.next {
             background: #2980b9;
             border-color: #1a5276;
             color: #ffffff;
             text-shadow: 2px 2px 0 #0f2f4a;
-            box-shadow: inset -3px -3px 0 #0f2f4a, inset 3px 3px 0 #5dade2;
+            box-shadow: inset -4px -4px 0 #0f2f4a, inset 4px 4px 0 #5dade2;
         }
         .action-btn.done:disabled {
             background: #888;
             border-color: #555;
             text-shadow: none;
-            box-shadow: inset -3px -3px 0 #555, inset 3px 3px 0 #aaa;
+            box-shadow: inset -4px -4px 0 #555, inset 4px 4px 0 #aaa;
         }
         .steam-timer {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             color: #1a5a30;
             background: #d4e6f1;
-            padding: 4px 16px;
-            border-radius: 30px;
-            border: 3px solid #2d8a4e;
+            padding: 4px 14px;
+            border-radius: 0px;
+            border: 4px solid #2d8a4e;
             text-align: center;
-            min-width: 80px;
+            min-width: 70px;
+            font-family: 'Press Start 2P', monospace;
         }
         .step-hint {
             font-weight: bold;
             color: #000000;
-            font-size: 15px;
+            font-size: 11px;
             text-align: center;
-            margin: 2px 0;
             padding: 4px;
             background: #ffeeee;
-            border-radius: 12px;
-            border: 2px solid #cc0000;
+            border-radius: 0px;
+            border: 4px solid #cc0000;
             width: 100%;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #cookingPanel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            width: 100%;
+            flex: 1;
+            overflow: hidden;
+        }
+        .kitchen-layout-scroll {
+            flex: 1;
+            overflow-y: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 2px 0;
+        }
+        #kitchenStatus {
+            font-size: 12px;
+        }
+        .order-panel-title {
+            color: #cc0000;
+            font-size: 12px;
+            text-align: center;
+            border-bottom: 4px solid #cc0000;
+            padding-bottom: 4px;
+            font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
+        }
+        #orderList {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 2px 0;
         }
     </style>
 </head>
@@ -512,12 +602,12 @@
     <div id="start-screen" class="screen">
         <h1>ПОКЕ<br>РАМЕН</h1>
         <button class="pixel-btn" id="startBtn">Начать</button>
-        <div style="font-size:14px; color:#880000; margin-top:20px; font-weight:bold;">16-bit kitchen</div>
+        <div style="font-size:12px; color:#880000; margin-top:20px; font-weight:bold; font-family:'Press Start 2P',monospace;">16-bit kitchen</div>
     </div>
 
     <!-- ИМЯ -->
     <div id="name-screen" class="screen hidden">
-        <h2 style="color:#cc0000; text-shadow:2px 2px 0 #880000;">Введи имя</h2>
+        <h2 style="color:#cc0000; text-shadow:2px 2px 0 #880000; font-family:'Press Start 2P',monospace; font-size:24px;">Введи имя</h2>
         <input type="text" id="nameInput" maxlength="12" placeholder="Шеф-повар" value="Кунг-пао">
         <button class="pixel-btn" id="nameConfirmBtn">Готово</button>
     </div>
@@ -537,53 +627,55 @@
 
         <div class="kitchen-area">
             <div class="kitchen" id="kitchenZone">
-                <div style="color:#cc0000; font-size:16px; text-align:center; padding:4px; font-weight:bold;">
+                <div style="color:#cc0000; font-size:12px; text-align:center; padding:2px; font-weight:bold; font-family:'Press Start 2P',monospace; flex-shrink:0;">
                     <span id="kitchenStatus">🍳 Нажми «Выйти на смену»</span>
                 </div>
-                <div id="cookingPanel" style="display:flex; flex-direction:column; align-items:center; gap:4px; width:100%;">
+                <div id="cookingPanel">
                     <!-- РЕЦЕПТ СВЕРХУ -->
                     <div id="recipeDisplay" class="recipe-display">
-                        <span style="color:#880000;">📖 РЕЦЕПТ</span>
+                        <span style="color:#880000; font-family:'Press Start 2P',monospace; font-size:11px;">📖 РЕЦЕПТ</span>
                         <div id="recipeContent" style="margin-top:4px;">
-                            <span style="color:#880000;">Выберите заказ</span>
+                            <span style="color:#880000; font-family:'Press Start 2P',monospace; font-size:11px;">Выберите заказ</span>
                         </div>
                     </div>
                     
                     <!-- КУХНЯ: ящики с ингредиентами -->
                     <div class="kitchen-layout">
-                        <div class="ingredient-row" id="ingredientBoxes">
-                            <div class="ingredient-box" data-ing="клубника"><span class="emoji">🍓</span> Клубника</div>
-                            <div class="ingredient-box" data-ing="творожный сыр"><span class="emoji">🧀</span> Творожный сыр</div>
-                            <div class="ingredient-box" data-ing="тесто"><span class="emoji">🫓</span> Тесто</div>
-                            <div class="ingredient-box" data-ing="лосось"><span class="emoji">🐟</span> Лосось</div>
-                            <div class="ingredient-box" data-ing="креветка"><span class="emoji">🦐</span> Креветка</div>
-                            <div class="ingredient-box" data-ing="рисовое тесто"><span class="emoji">🍚</span> Рис. тесто</div>
-                            <div class="ingredient-box" data-ing="смородина"><span class="emoji">🫐</span> Смородина</div>
+                        <div class="kitchen-layout-scroll">
+                            <div class="ingredient-row" id="ingredientBoxes">
+                                <div class="ingredient-box" data-ing="клубника"><span class="emoji">🍓</span> Клубника</div>
+                                <div class="ingredient-box" data-ing="творожный сыр"><span class="emoji">🧀</span> Твор. сыр</div>
+                                <div class="ingredient-box" data-ing="тесто"><span class="emoji">🫓</span> Тесто</div>
+                                <div class="ingredient-box" data-ing="лосось"><span class="emoji">🐟</span> Лосось</div>
+                                <div class="ingredient-box" data-ing="креветка"><span class="emoji">🦐</span> Креветка</div>
+                                <div class="ingredient-box" data-ing="рисовое тесто"><span class="emoji">🍚</span> Рис. тесто</div>
+                                <div class="ingredient-box" data-ing="смородина"><span class="emoji">🫐</span> Смородина</div>
+                            </div>
+                            
+                            <!-- Зона сборки -->
+                            <div class="assembly-zone" id="assemblyArea">
+                                <span style="color:#880000; font-weight:bold; font-family:'Press Start 2P',monospace; font-size:11px;">📦 Сборка</span>
+                            </div>
+                            
+                            <!-- Кнопки действий -->
+                            <div class="action-buttons" id="actionButtons">
+                                <!-- Сюда будут динамически добавляться кнопки -->
+                            </div>
+                            
+                            <!-- Таймер пароварки -->
+                            <div id="steamTimerContainer" style="display:none; justify-content:center; margin:4px 0;">
+                                <div class="steam-timer" id="steamTimerDisplay">♨️ 5с</div>
+                            </div>
+                            
+                            <!-- Подсказка шага -->
+                            <div id="stepHint" class="step-hint">Нажмите "Готовить" у заказа</div>
                         </div>
-                        
-                        <!-- Зона сборки -->
-                        <div class="assembly-zone" id="assemblyArea">
-                            <span style="color:#880000; font-weight:bold;">📦 Сборка</span>
-                        </div>
-                        
-                        <!-- Кнопки действий -->
-                        <div class="action-buttons" id="actionButtons">
-                            <!-- Сюда будут динамически добавляться кнопки -->
-                        </div>
-                        
-                        <!-- Таймер пароварки -->
-                        <div id="steamTimerContainer" style="display:none; justify-content:center; margin:4px 0;">
-                            <div class="steam-timer" id="steamTimerDisplay">♨️ 5с</div>
-                        </div>
-                        
-                        <!-- Подсказка шага -->
-                        <div id="stepHint" class="step-hint">Нажмите "Готовить" у заказа</div>
                     </div>
                 </div>
             </div>
             <div class="order-panel" id="orderPanel">
-                <div style="color:#cc0000; font-size:16px; text-align:center; border-bottom:2px solid #cc0000; padding-bottom:4px; font-weight:bold;">📋 ЗАКАЗЫ</div>
-                <div id="orderList" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:4px;"></div>
+                <div class="order-panel-title">📋 ЗАКАЗЫ</div>
+                <div id="orderList"></div>
             </div>
         </div>
         <div class="message-bar" id="messageBar">🍜 Добро пожаловать!</div>
@@ -807,8 +899,8 @@
         function renderCookingUI() {
             const order = state.orders[state.currentCookingOrderIdx];
             if (!order || !state.currentDishName) {
-                recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
-                assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+                recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
+                assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
                 stepHint.textContent = 'Нажмите "Готовить" у заказа';
                 actionButtons.innerHTML = '';
                 return;
@@ -828,7 +920,7 @@
             });
             recipeHtml += `</div>`;
             if (recipe.needsSteam) {
-                recipeHtml += `<div style="margin-top:4px; color:#1a5a30;">♨️ Требуется пароварка</div>`;
+                recipeHtml += `<div style="margin-top:4px; color:#1a5a30; font-family:'Press Start 2P',monospace; font-size:11px;">♨️ Требуется пароварка</div>`;
             }
             if (progressText) {
                 recipeHtml += `<div class="progress-info">${progressText}</div>`;
@@ -837,7 +929,7 @@
 
             let assemblyHtml = state.assembled.length ? 
                 state.assembled.map(a => `<span class="placed">${a}</span>`).join(' ') : 
-                '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+                '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
             assemblyArea.innerHTML = assemblyHtml;
 
             const allIngredients = state.neededIngredients.every(i => state.assembled.includes(i));
@@ -856,7 +948,7 @@
                 }
             } else if (state.isSteaming) {
                 buttonsHtml = `<div style="display:flex; align-items:center; gap:12px;">
-                                <span style="font-weight:bold; color:#1a5a30;">♨️ Парится...</span>
+                                <span style="font-weight:bold; color:#1a5a30; font-family:'Press Start 2P',monospace; font-size:13px;">♨️ Парится...</span>
                                 <span class="steam-timer">${state.steamSeconds}с</span>
                               </div>`;
             } else if (allIngredients && !state.isFolded) {
@@ -1041,8 +1133,8 @@
             state.isSteaming = false;
             steamTimerContainer.style.display = 'none';
             
-            recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
-            assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+            recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
+            assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
             stepHint.textContent = 'Нажмите "Готовить" у заказа';
             actionButtons.innerHTML = '';
             renderOrders();
@@ -1084,8 +1176,8 @@
                         if (state.steamInterval) clearInterval(state.steamInterval);
                         state.isSteaming = false;
                         steamTimerContainer.style.display = 'none';
-                        recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
-                        assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold;">📦 Сборка</span>';
+                        recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
+                        assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
                         stepHint.textContent = 'Нажмите "Готовить" у заказа';
                         actionButtons.innerHTML = '';
                     }
@@ -1175,7 +1267,7 @@
                 }
             }, 100);
             renderOrders();
-            recipeContent.innerHTML = '<span style="color:#880000;">Выберите заказ</span>';
+            recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
             stepHint.textContent = 'Нажмите "Готовить" у заказа';
             actionButtons.innerHTML = '';
         }

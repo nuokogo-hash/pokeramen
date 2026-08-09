@@ -40,66 +40,6 @@
             display: flex;
             flex-direction: column;
         }
-        .pixel-text {
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: #000000;
-            font-weight: bold;
-            font-family: 'Press Start 2P', monospace;
-            line-height: 1.4;
-        }
-        .pixel-btn {
-            background: #cc0000;
-            border: 4px solid #880000;
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 14px 24px;
-            border-radius: 0px;
-            text-transform: uppercase;
-            box-shadow: inset -4px -4px 0 #660000, inset 4px 4px 0 #ff4444;
-            transition: 0.05s linear;
-            touch-action: manipulation;
-            cursor: pointer;
-            font-family: 'Press Start 2P', monospace;
-            text-shadow: 2px 2px 0 #550000;
-            letter-spacing: 2px;
-            image-rendering: pixelated;
-        }
-        .pixel-btn:active {
-            transform: scale(0.94);
-            box-shadow: inset 4px 4px 0 #660000, inset -4px -4px 0 #ff4444;
-        }
-        .pixel-btn.small {
-            font-size: 14px;
-            padding: 10px 16px;
-        }
-        .pixel-btn.white {
-            background: #ffffff;
-            border: 4px solid #cc0000;
-            color: #000000;
-            text-shadow: none;
-            box-shadow: inset -4px -4px 0 #aaaaaa, inset 4px 4px 0 #ffffff;
-        }
-        .pixel-btn.green {
-            background: #2d8a4e;
-            border: 4px solid #1a5a30;
-            color: #ffffff;
-            text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
-        }
-        .pixel-btn.orange {
-            background: #e67e22;
-            border: 4px solid #a04000;
-            color: #ffffff;
-            text-shadow: 2px 2px 0 #6b2f00;
-            box-shadow: inset -4px -4px 0 #6b2f00, inset 4px 4px 0 #f39c12;
-        }
-        .pixel-btn:disabled {
-            opacity: 0.5;
-            transform: none !important;
-            box-shadow: inset -4px -4px 0 #660000, inset 4px 4px 0 #ff4444 !important;
-        }
         .screen {
             width: 100%;
             height: 100%;
@@ -131,7 +71,6 @@
             letter-spacing: 4px;
             text-align: center;
             line-height: 1.2;
-            margin-bottom: 12px;
             font-family: 'Press Start 2P', monospace;
         }
         #name-screen {
@@ -150,7 +89,6 @@
             border-radius: 0px;
             font-family: 'Press Start 2P', monospace;
             outline: none;
-            font-weight: bold;
         }
         #rules-screen {
             background: #ffffff;
@@ -164,9 +102,28 @@
             color: #000000;
             line-height: 1.6;
             max-width: 90%;
-            font-weight: bold;
             font-family: 'Press Start 2P', monospace;
         }
+        .pixel-btn {
+            background: #cc0000;
+            border: 4px solid #880000;
+            color: #ffffff;
+            font-size: 18px;
+            padding: 14px 24px;
+            border-radius: 0px;
+            text-transform: uppercase;
+            box-shadow: inset -4px -4px 0 #660000, inset 4px 4px 0 #ff4444;
+            touch-action: manipulation;
+            cursor: pointer;
+            font-family: 'Press Start 2P', monospace;
+            text-shadow: 2px 2px 0 #550000;
+            letter-spacing: 2px;
+        }
+        .pixel-btn:active {
+            transform: scale(0.94);
+            box-shadow: inset 4px 4px 0 #660000, inset -4px -4px 0 #ff4444;
+        }
+        /* ====== ОСНОВНОЙ ЭКРАН ====== */
         #game-screen {
             background: #ffffff;
             z-index: 5;
@@ -174,96 +131,104 @@
             justify-content: flex-start;
             gap: 4px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .game-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
             padding: 4px 8px;
             background: #cc0000;
             border: 4px solid #880000;
-            border-radius: 0px;
             flex-shrink: 0;
+            height: 38px;
+            min-height: 38px;
         }
         .coin-display {
             background: #ffffff;
-            padding: 6px 16px;
-            border-radius: 0px;
+            padding: 4px 14px;
             border: 4px solid #880000;
             color: #000000;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
             font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
         }
         .shift-btn {
             background: #ffffff;
             border: 4px solid #880000;
             color: #cc0000;
-            font-size: 16px;
-            padding: 6px 18px;
-            border-radius: 0px;
-            font-weight: bold;
+            font-size: 11px;
+            padding: 4px 12px;
             font-family: 'Press Start 2P', monospace;
             cursor: pointer;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .shift-btn:active {
             transform: scale(0.94);
         }
-        .kitchen-area {
-            display: flex;
-            flex: 1;
-            width: 100%;
-            gap: 6px;
-            min-height: 0;
-            overflow: hidden;
-        }
-        .kitchen {
-            flex: 2;
+        .shift-btn.active {
             background: #ffdddd;
-            border: 4px solid #cc0000;
-            border-radius: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 6px;
-            overflow: hidden;
-            min-width: 0;
+            color: #880000;
         }
-        .order-panel {
-            flex: 1.2;
+        /* ====== 1/4 — ЧЕКИ ====== */
+        .orders-area {
+            width: 100%;
             background: #ffeeee;
             border: 4px solid #cc0000;
-            border-radius: 0px;
-            display: flex;
-            flex-direction: column;
             padding: 6px;
-            gap: 4px;
-            overflow: hidden;
-            min-width: 0;
-        }
-        .order-item {
-            background: #ffffff;
-            border: 3px solid #cc0000;
-            border-radius: 0px;
-            padding: 4px;
-            font-size: 10px;
-            color: #000000;
-            font-family: 'Press Start 2P', monospace;
             flex-shrink: 0;
-            overflow: hidden;
-            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            height: 25%;
+            min-height: 25%;
+            max-height: 25%;
+            display: flex;
+            align-items: stretch;
+            gap: 6px;
         }
-        .order-item .timer {
-            color: #cc0000;
-            font-weight: bold;
-            font-size: 14px;
+        .orders-area::-webkit-scrollbar {
+            height: 8px;
+            background: #ddcccc;
+        }
+        .orders-area::-webkit-scrollbar-thumb {
+            background: #cc0000;
+            border: 2px solid #880000;
+        }
+        .scroll-content {
+            display: flex;
+            gap: 6px;
+            align-items: stretch;
+            padding: 2px;
+            height: 100%;
+        }
+        .order-card {
+            background: #ffffff;
+            border: 4px solid #cc0000;
+            padding: 4px 8px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 140px;
+            max-width: 170px;
+            flex-shrink: 0;
+            font-size: 9px;
             font-family: 'Press Start 2P', monospace;
+            gap: 2px;
+            height: 100%;
         }
-        .order-item .timer.urgent {
+        .order-card .timer {
+            color: #cc0000;
+            font-size: 13px;
+        }
+        .order-card .timer.urgent {
             color: #ff0000;
             animation: blink 0.5s infinite;
         }
@@ -271,223 +236,219 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
-        .order-recipe {
+        .order-card .dishes-list {
             display: flex;
             flex-wrap: wrap;
             gap: 3px;
-            margin: 3px 0;
+            justify-content: center;
+            flex: 1;
+            align-content: center;
         }
-        .order-recipe .dish-item {
+        .order-card .dishes-list .d-item {
             background: #ffcccc;
             padding: 2px 6px;
-            border-radius: 0px;
-            font-size: 9px;
-            border: 3px solid #cc0000;
-            color: #000000;
-            font-weight: bold;
+            border: 2px solid #cc0000;
+            font-size: 7px;
             font-family: 'Press Start 2P', monospace;
-            white-space: nowrap;
+            word-break: break-word;
+            white-space: normal;
+            max-width: 100%;
+            text-align: center;
+            line-height: 1.3;
         }
-        .order-recipe .dish-item.done {
+        .order-card .dishes-list .d-item.done {
             background: #7ae07a;
             border-color: #2d8a4e;
             text-decoration: line-through;
             opacity: 0.6;
         }
-        .order-recipe .dish-item.current {
+        .order-card .dishes-list .d-item.current {
             border-color: #ff8800;
-            border-width: 3px;
             background: #ffe0b0;
         }
-        .cook-btn {
+        .order-card .card-actions {
+            margin-top: 2px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .order-card .card-actions .cook-btn {
             background: #cc0000;
             border: 3px solid #880000;
             color: #ffffff;
-            padding: 2px 8px;
-            border-radius: 0px;
-            font-size: 9px;
-            font-weight: bold;
-            cursor: pointer;
+            padding: 2px 10px;
+            font-size: 8px;
             font-family: 'Press Start 2P', monospace;
+            cursor: pointer;
             display: inline-block;
-            margin-top: 2px;
         }
-        .cook-btn:active {
+        .order-card .card-actions .cook-btn:active {
             transform: scale(0.92);
         }
-        .cook-btn.white {
-            background: #ffffff;
-            border: 3px solid #cc0000;
-            color: #000000;
+        .order-card .done-label {
+            color: #2d8a4e;
+            font-size: 9px;
         }
-        .cook-btn.green {
-            background: #2d8a4e;
-            border: 3px solid #1a5a30;
-            color: #ffffff;
+        .order-card .count-badge {
+            font-size: 8px;
+            color: #880000;
         }
-        .cook-btn.orange {
-            background: #e67e22;
-            border: 3px solid #a04000;
-            color: #ffffff;
-        }
-        .cook-btn:disabled {
-            opacity: 0.5;
-            transform: none !important;
-        }
-        .message-bar {
-            width: 100%;
-            background: #cc0000;
-            border: 4px solid #880000;
-            border-radius: 0px;
-            padding: 4px 12px;
-            color: #ffffff;
-            font-size: 12px;
-            text-align: center;
-            min-height: 36px;
-            flex-shrink: 0;
-            font-weight: bold;
-            font-family: 'Press Start 2P', monospace;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .flex-row {
+        .order-card .card-header {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            flex-shrink: 0;
         }
-        .mt-2 { margin-top: 8px; }
-        .kitchen-layout {
+        /* ====== НИЖНЯЯ ЧАСТЬ — КУХНЯ ====== */
+        .kitchen-area {
+            flex: 1;
+            background: #ffdddd;
+            border: 4px solid #cc0000;
+            padding: 6px;
             display: flex;
             flex-direction: column;
             gap: 4px;
-            width: 100%;
-            flex: 1;
             overflow: hidden;
+            min-height: 0;
+            height: 75%;
         }
+        /* ====== 1/4 — РЕЦЕПТ ====== */
         .recipe-display {
             background: #ffffff;
             border: 4px solid #cc0000;
-            border-radius: 0px;
-            padding: 6px;
+            padding: 6px 8px;
             text-align: center;
-            font-weight: bold;
-            color: #000000;
-            font-size: 12px;
-            width: 100%;
-            font-family: 'Press Start 2P', monospace;
+            font-size: 9px;
             flex-shrink: 0;
+            font-family: 'Press Start 2P', monospace;
+            height: 33.33%;
+            min-height: 33.33%;
+            max-height: 33.33%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
         }
         .recipe-display .dish-name {
             color: #cc0000;
-            font-size: 16px;
-            font-family: 'Press Start 2P', monospace;
+            font-size: 12px;
+            line-height: 1.4;
         }
         .recipe-display .ing-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
-            margin-top: 4px;
+            margin-top: 3px;
         }
         .recipe-display .ing-list span {
             background: #ffdddd;
             padding: 2px 8px;
-            border-radius: 0px;
-            border: 3px solid #cc0000;
-            font-size: 10px;
+            border: 2px solid #cc0000;
+            font-size: 7px;
             font-family: 'Press Start 2P', monospace;
+            line-height: 1.3;
         }
         .recipe-display .ing-list span.done {
             background: #7ae07a;
             border-color: #2d8a4e;
         }
         .recipe-display .progress-info {
-            margin-top: 4px;
-            font-size: 10px;
+            font-size: 7px;
             color: #880000;
-            font-family: 'Press Start 2P', monospace;
+            margin-top: 2px;
+            line-height: 1.3;
         }
+        /* ====== 1/4 — ИНГРЕДИЕНТЫ ====== */
         .ingredient-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 3px;
+            gap: 4px;
             justify-content: center;
             background: #ffcccc;
             padding: 4px;
-            border-radius: 0px;
             border: 4px solid #cc0000;
             flex-shrink: 0;
+            height: 33.33%;
+            min-height: 33.33%;
+            max-height: 33.33%;
+            align-content: center;
+            overflow: hidden;
         }
         .ingredient-box {
             background: #ffffff;
             border: 3px solid #cc0000;
-            border-radius: 0px;
-            padding: 3px 8px;
-            font-weight: bold;
-            color: #000000;
-            font-size: 9px;
+            padding: 2px 8px;
+            font-size: 7px;
             display: flex;
             align-items: center;
             gap: 3px;
             cursor: pointer;
             box-shadow: inset -3px -3px 0 #880000;
             font-family: 'Press Start 2P', monospace;
-            flex-shrink: 0;
+            line-height: 1.3;
         }
         .ingredient-box:active {
             transform: scale(0.95);
         }
         .ingredient-box .emoji {
-            font-size: 14px;
+            font-size: 12px;
         }
+        /* ====== 1/8 — СБОРКА ====== */
         .assembly-zone {
             background: #ffffff;
             border: 4px dashed #cc0000;
-            border-radius: 0px;
             padding: 4px;
-            min-height: 34px;
+            min-height: 0;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             gap: 3px;
             flex-shrink: 0;
+            height: 12.5%;
+            min-height: 12.5%;
+            max-height: 12.5%;
+            overflow: hidden;
         }
         .assembly-zone .placed {
             background: #ffcccc;
-            border: 3px solid #cc0000;
+            border: 2px solid #cc0000;
             padding: 2px 8px;
-            border-radius: 0px;
-            color: #000000;
-            font-weight: bold;
-            font-size: 9px;
+            font-size: 7px;
             font-family: 'Press Start 2P', monospace;
+            line-height: 1.3;
+        }
+        /* ====== 1/8 — ВСЁ ОСТАЛЬНОЕ ====== */
+        .kitchen-bottom {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-height: 0;
+            height: 12.5%;
+            padding: 2px 0;
         }
         .action-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
             justify-content: center;
             flex-shrink: 0;
-            width: 100%;
+            padding: 2px 0;
         }
         .action-btn {
-            padding: 6px 16px;
-            border-radius: 0px;
-            font-size: 13px;
-            font-weight: bold;
-            border: 4px solid;
+            padding: 3px 12px;
+            font-size: 9px;
+            border: 3px solid;
             cursor: pointer;
-            min-width: 100px;
             font-family: 'Press Start 2P', monospace;
             background: #2d8a4e;
             border-color: #1a5a30;
             color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
+            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
+            flex: 0 1 auto;
+            line-height: 1.3;
         }
         .action-btn:active {
             transform: scale(0.94);
@@ -500,139 +461,119 @@
         .action-btn.fold {
             background: #e67e22;
             border-color: #a04000;
-            color: #ffffff;
             text-shadow: 2px 2px 0 #6b2f00;
-            box-shadow: inset -4px -4px 0 #6b2f00, inset 4px 4px 0 #f39c12;
+            box-shadow: inset -3px -3px 0 #6b2f00, inset 3px 3px 0 #f39c12;
         }
         .action-btn.steam {
             background: #2d8a4e;
             border-color: #1a5a30;
-            color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
+            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
         }
         .action-btn.done {
             background: #2d8a4e;
             border-color: #1a5a30;
-            color: #ffffff;
             text-shadow: 2px 2px 0 #0f3a1f;
-            box-shadow: inset -4px -4px 0 #0f3a1f, inset 4px 4px 0 #5ab87a;
+            box-shadow: inset -3px -3px 0 #0f3a1f, inset 3px 3px 0 #5ab87a;
         }
         .action-btn.next {
             background: #2980b9;
             border-color: #1a5276;
-            color: #ffffff;
             text-shadow: 2px 2px 0 #0f2f4a;
-            box-shadow: inset -4px -4px 0 #0f2f4a, inset 4px 4px 0 #5dade2;
-        }
-        .action-btn.done:disabled {
-            background: #888;
-            border-color: #555;
-            text-shadow: none;
-            box-shadow: inset -4px -4px 0 #555, inset 4px 4px 0 #aaa;
-        }
-        .steam-timer {
-            font-size: 18px;
-            font-weight: bold;
-            color: #1a5a30;
-            background: #d4e6f1;
-            padding: 4px 14px;
-            border-radius: 0px;
-            border: 4px solid #2d8a4e;
-            text-align: center;
-            min-width: 70px;
-            font-family: 'Press Start 2P', monospace;
+            box-shadow: inset -3px -3px 0 #0f2f4a, inset 3px 3px 0 #5dade2;
         }
         .step-hint {
-            font-weight: bold;
-            color: #000000;
-            font-size: 11px;
+            font-size: 8px;
             text-align: center;
-            padding: 4px;
+            padding: 3px;
             background: #ffeeee;
-            border-radius: 0px;
-            border: 4px solid #cc0000;
-            width: 100%;
+            border: 3px solid #cc0000;
             font-family: 'Press Start 2P', monospace;
             flex-shrink: 0;
-            min-height: 32px;
+            min-height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        #cookingPanel {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            width: 100%;
-            flex: 1;
-            overflow: hidden;
-        }
-        .kitchen-layout-scroll {
-            flex: 1;
-            overflow-y: auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding: 2px 0;
-        }
-        #kitchenStatus {
-            font-size: 12px;
-        }
-        .order-panel-title {
-            color: #cc0000;
-            font-size: 12px;
-            text-align: center;
-            border-bottom: 4px solid #cc0000;
-            padding-bottom: 4px;
-            font-weight: bold;
-            font-family: 'Press Start 2P', monospace;
-            flex-shrink: 0;
-        }
-        #orderList {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            padding: 2px 0;
-        }
-        .order-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-        .order-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            flex: 1;
-            min-width: 0;
-        }
-        .order-right {
-            flex-shrink: 0;
+            line-height: 1.3;
         }
         .steam-center {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            gap: 4px;
-        }
-        .steam-center .steam-timer {
-            font-size: 24px;
-            padding: 8px 20px;
+            gap: 2px;
+            padding: 2px;
         }
         .steam-center .steam-label {
             font-family: 'Press Start 2P', monospace;
             color: #1a5a30;
-            font-size: 14px;
+            font-size: 9px;
+        }
+        .steam-center .steam-timer {
+            font-size: 16px;
+            padding: 2px 14px;
+            border: 3px solid #2d8a4e;
+            background: #d4e6f1;
+            color: #1a5a30;
+            font-family: 'Press Start 2P', monospace;
+        }
+        #steamTimerContainer {
+            display: none;
+            justify-content: center;
+            width: 100%;
+        }
+        .message-bar {
+            width: 100%;
+            background: #cc0000;
+            border: 4px solid #880000;
+            padding: 4px 10px;
+            color: #ffffff;
+            font-size: 9px;
+            text-align: center;
+            min-height: 24px;
+            flex-shrink: 0;
+            font-family: 'Press Start 2P', monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1.3;
+        }
+        .kitchen-status {
+            color: #cc0000;
+            font-size: 9px;
+            text-align: center;
+            flex-shrink: 0;
+            font-family: 'Press Start 2P', monospace;
+            padding: 2px 0;
+            line-height: 1.3;
+        }
+        .recipe-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+        .order-card .d-item-long {
+            font-size: 6px;
+            padding: 1px 4px;
+        }
+        .recipe-display .recipe-label {
+            font-size: 8px;
+            color: #880000;
+        }
+        .shift-status {
+            font-size: 9px;
+            color: #ffffff;
+            background: #880000;
+            padding: 2px 10px;
+            border: 2px solid #660000;
+            font-family: 'Press Start 2P', monospace;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .shift-status.active {
+            background: #2d8a4e;
+            border-color: #1a5a30;
         }
     </style>
 </head>
@@ -642,7 +583,7 @@
     <div id="start-screen" class="screen">
         <h1>ПОКЕ<br>РАМЕН</h1>
         <button class="pixel-btn" id="startBtn">Начать</button>
-        <div style="font-size:12px; color:#880000; margin-top:20px; font-weight:bold; font-family:'Press Start 2P',monospace;">16-bit kitchen</div>
+        <div style="font-size:12px; color:#880000; margin-top:20px; font-family:'Press Start 2P',monospace;">16-bit kitchen</div>
     </div>
 
     <!-- ИМЯ -->
@@ -665,62 +606,54 @@
             <button class="shift-btn" id="shiftBtn">Выйти на смену</button>
         </div>
 
+        <!-- ===== 1/4 — ЧЕКИ ===== -->
+        <div class="orders-area" id="ordersArea">
+            <div class="scroll-content" id="orderList"></div>
+        </div>
+
+        <!-- ===== 3/4 — КУХНЯ ===== -->
         <div class="kitchen-area">
-            <div class="kitchen" id="kitchenZone">
-                <div style="color:#cc0000; font-size:12px; text-align:center; padding:2px; font-weight:bold; font-family:'Press Start 2P',monospace; flex-shrink:0;">
-                    <span id="kitchenStatus">🍳 Нажми «Выйти на смену»</span>
-                </div>
-                <div id="cookingPanel">
-                    <!-- РЕЦЕПТ СВЕРХУ -->
-                    <div id="recipeDisplay" class="recipe-display">
-                        <span style="color:#880000; font-family:'Press Start 2P',monospace; font-size:11px;">📖 РЕЦЕПТ</span>
-                        <div id="recipeContent" style="margin-top:4px;">
-                            <span style="color:#880000; font-family:'Press Start 2P',monospace; font-size:11px;">Выберите заказ</span>
-                        </div>
-                    </div>
-                    
-                    <!-- КУХНЯ: ящики с ингредиентами -->
-                    <div class="kitchen-layout">
-                        <div class="kitchen-layout-scroll">
-                            <div class="ingredient-row" id="ingredientBoxes">
-                                <div class="ingredient-box" data-ing="клубника"><span class="emoji">🍓</span> Клубника</div>
-                                <div class="ingredient-box" data-ing="творожный сыр"><span class="emoji">🧀</span> Твор. сыр</div>
-                                <div class="ingredient-box" data-ing="тесто"><span class="emoji">🫓</span> Тесто</div>
-                                <div class="ingredient-box" data-ing="лосось"><span class="emoji">🐟</span> Лосось</div>
-                                <div class="ingredient-box" data-ing="креветка"><span class="emoji">🦐</span> Креветка</div>
-                                <div class="ingredient-box" data-ing="рисовое тесто"><span class="emoji">🍚</span> Рис. тесто</div>
-                                <div class="ingredient-box" data-ing="смородина"><span class="emoji">🫐</span> Смородина</div>
-                            </div>
-                            
-                            <!-- Зона сборки -->
-                            <div class="assembly-zone" id="assemblyArea">
-                                <span style="color:#880000; font-weight:bold; font-family:'Press Start 2P',monospace; font-size:11px;">📦 Сборка</span>
-                            </div>
-                            
-                            <!-- Кнопки действий -->
-                            <div class="action-buttons" id="actionButtons">
-                                <!-- Сюда будут динамически добавляться кнопки -->
-                            </div>
-                            
-                            <!-- Таймер пароварки (по центру) -->
-                            <div id="steamTimerContainer" style="display:none; justify-content:center; margin:4px 0; width:100%;">
-                                <div class="steam-center">
-                                    <div class="steam-label">♨️ ПАРИТСЯ</div>
-                                    <div class="steam-timer" id="steamTimerDisplay">5с</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Подсказка шага -->
-                            <div id="stepHint" class="step-hint">Нажмите "Готовить" у заказа</div>
-                        </div>
-                    </div>
+            <div class="kitchen-status" id="kitchenStatus">🍳 Нажми «Выйти на смену»</div>
+
+            <!-- 1/4 — РЕЦЕПТ -->
+            <div class="recipe-display">
+                <span class="recipe-label">📖 РЕЦЕПТ</span>
+                <div id="recipeContent" class="recipe-content">
+                    <span style="color:#880000; font-size:8px;">Выберите заказ</span>
                 </div>
             </div>
-            <div class="order-panel" id="orderPanel">
-                <div class="order-panel-title">📋 ЗАКАЗЫ</div>
-                <div id="orderList"></div>
+
+            <!-- 1/4 — ИНГРЕДИЕНТЫ -->
+            <div class="ingredient-row" id="ingredientBoxes">
+                <div class="ingredient-box" data-ing="клубника"><span class="emoji">🍓</span> Клубника</div>
+                <div class="ingredient-box" data-ing="творожный сыр"><span class="emoji">🧀</span> Твор. сыр</div>
+                <div class="ingredient-box" data-ing="тесто"><span class="emoji">🫓</span> Тесто</div>
+                <div class="ingredient-box" data-ing="лосось"><span class="emoji">🐟</span> Лосось</div>
+                <div class="ingredient-box" data-ing="креветка"><span class="emoji">🦐</span> Креветка</div>
+                <div class="ingredient-box" data-ing="рисовое тесто"><span class="emoji">🍚</span> Рис. тесто</div>
+                <div class="ingredient-box" data-ing="смородина"><span class="emoji">🫐</span> Смородина</div>
+            </div>
+
+            <!-- 1/8 — СБОРКА -->
+            <div class="assembly-zone" id="assemblyArea">
+                <span style="color:#880000; font-size:8px; font-family:'Press Start 2P',monospace;">📦 Сборка</span>
+            </div>
+
+            <!-- 1/8 — ВСЁ ОСТАЛЬНОЕ -->
+            <div class="kitchen-bottom">
+                <div class="action-buttons" id="actionButtons"></div>
+
+                <div id="steamTimerContainer">
+                    <div class="steam-center">
+                        <div class="steam-label">♨️ ПАРИТСЯ</div>
+                        <div class="steam-timer" id="steamTimerDisplay">5с</div>
+                    </div>
+                </div>
+
+                <div class="step-hint" id="stepHint">Нажмите "Готовить" у заказа</div>
             </div>
         </div>
+
         <div class="message-bar" id="messageBar">🍜 Добро пожаловать!</div>
     </div>
 </div>
@@ -791,6 +724,7 @@
         const actionButtons = $('actionButtons');
         const steamTimerContainer = $('steamTimerContainer');
         const steamTimerDisplay = $('steamTimerDisplay');
+        const ordersArea = $('ordersArea');
 
         function updateCoins() {
             coinCount.textContent = state.coins;
@@ -800,14 +734,18 @@
             messageBar.textContent = msg;
         }
 
+        function scrollOrdersToEnd() {
+            setTimeout(() => {
+                ordersArea.scrollLeft = ordersArea.scrollWidth;
+            }, 50);
+        }
+
         // ---------- GAME MECHANICS ----------
         function getDishCount() {
             const orderNum = state.orderCounter + 1;
-            if (orderNum <= 3) {
-                return 1;
-            } else if (orderNum <= 15) {
-                return Math.random() < 0.5 ? 1 : 2;
-            } else {
+            if (orderNum <= 3) return 1;
+            else if (orderNum <= 15) return Math.random() < 0.5 ? 1 : 2;
+            else {
                 const rand = Math.random();
                 if (rand < 0.33) return 1;
                 if (rand < 0.66) return 2;
@@ -823,17 +761,12 @@
 
         function generateOrder() {
             if (!state.shiftActive || state.gameOver) return;
-            
             const count = getDishCount();
             const dishes = [];
-            const pool = ALL_DISHES;
             for (let i=0; i<count; i++) {
-                const dish = pool[Math.floor(Math.random() * pool.length)];
-                dishes.push(dish);
+                dishes.push(ALL_DISHES[Math.floor(Math.random() * ALL_DISHES.length)]);
             }
-
             const timeLimit = getOrderTime(count);
-            
             const order = {
                 dishes: dishes,
                 remaining: timeLimit,
@@ -846,6 +779,7 @@
             state.orders.push(order);
             state.orderCounter++;
             renderOrders();
+            scrollOrdersToEnd();
             showMessage(`📩 Заказ #${state.orderCounter}: ${dishes.map(d => MENU[d].display).join(', ')} (${timeLimit}с)`);
         }
 
@@ -853,8 +787,8 @@
             orderList.innerHTML = '';
             state.orders.forEach((order, idx) => {
                 if (order.completed) return;
-                const div = document.createElement('div');
-                div.className = 'order-item';
+                const card = document.createElement('div');
+                card.className = 'order-card';
                 const remaining = Math.ceil(order.remaining);
                 const timerClass = remaining <= 5 ? 'timer urgent' : 'timer';
                 
@@ -862,36 +796,32 @@
                     const display = MENU[d]?.display || d;
                     const isDone = order.dishCompleted[i];
                     const isCurrent = state.currentCookingOrderIdx === idx && state.currentDishIndex === i && !isDone;
-                    let cls = 'dish-item';
+                    let cls = 'd-item';
+                    if (display.length > 12) cls += ' d-item-long';
                     if (isDone) cls += ' done';
                     if (isCurrent) cls += ' current';
                     return `<span class="${cls}">${display} ${isDone ? '✅' : ''}</span>`;
-                }).join(' ');
+                }).join('');
                 
                 const allDone = order.dishCompleted.every(v => v === true);
-                const isFullyCooked = allDone;
                 
-                let cookBtnHtml = '';
-                if (!isFullyCooked) {
-                    cookBtnHtml = `<button class="cook-btn" data-orderidx="${idx}">🔪 Готовить</button>`;
+                let actionsHtml = '';
+                if (!allDone) {
+                    actionsHtml = `<button class="cook-btn" data-orderidx="${idx}">🔪 Готовить</button>`;
                 } else {
-                    cookBtnHtml = '<span style="color:#2d8a4e; font-size:9px;">✅ Заказ готов!</span>';
+                    actionsHtml = `<span class="done-label">✅ Заказ готов!</span>`;
                 }
                 
-                div.innerHTML = `
-                    <div class="order-row">
-                        <div class="order-left">
-                            <span class="${timerClass}">⏱ ${remaining}с</span>
-                            <span style="font-size:9px;">${order.dishes.length} бл.</span>
-                        </div>
-                        <div class="order-right">
-                            ${cookBtnHtml}
-                        </div>
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="${timerClass}">⏱ ${remaining}с</span>
+                        <span class="count-badge">${order.dishes.length} бл.</span>
                     </div>
-                    <div class="order-recipe">${dishesHtml}</div>
+                    <div class="dishes-list">${dishesHtml}</div>
+                    <div class="card-actions">${actionsHtml}</div>
                 `;
                 
-                const btn = div.querySelector('.cook-btn');
+                const btn = card.querySelector('.cook-btn');
                 if (btn) {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -899,7 +829,7 @@
                         startCooking(i);
                     });
                 }
-                orderList.appendChild(div);
+                orderList.appendChild(card);
             });
         }
 
@@ -907,38 +837,22 @@
             if (state.gameOver || !state.shiftActive) return;
             const order = state.orders[orderIdx];
             if (!order || order.completed) return;
-            
-            const allDone = order.dishCompleted.every(v => v === true);
-            if (allDone) {
-                showMessage('✅ Все блюда в этом заказе уже готовы!');
-                return;
-            }
-            
-            if (state.currentCookingOrderIdx !== -1) {
-                const currentOrder = state.orders[state.currentCookingOrderIdx];
-                if (currentOrder && !currentOrder.completed) {
-                    const currentAllDone = currentOrder.dishCompleted.every(v => v === true);
-                    if (!currentAllDone) {
-                        showMessage('⚠️ Сначала закончите текущее блюдо');
-                        return;
-                    }
-                }
-            }
-            
-            let dishIdx = -1;
-            for (let i = 0; i < order.dishes.length; i++) {
-                if (!order.dishCompleted[i]) {
-                    dishIdx = i;
-                    break;
-                }
-            }
-            if (dishIdx === -1) {
+            if (order.dishCompleted.every(v => v === true)) {
                 showMessage('✅ Все блюда уже готовы!');
                 return;
             }
+            if (state.currentCookingOrderIdx !== -1) {
+                const cur = state.orders[state.currentCookingOrderIdx];
+                if (cur && !cur.completed && !cur.dishCompleted.every(v => v === true)) {
+                    showMessage('⚠️ Сначала закончите текущее блюдо');
+                    return;
+                }
+            }
+            let dishIdx = order.dishCompleted.findIndex(v => !v);
+            if (dishIdx === -1) { showMessage('✅ Все блюда готовы!'); return; }
             
-            if (state.steamTimer) { clearTimeout(state.steamTimer); state.steamTimer = null; }
-            if (state.steamInterval) { clearInterval(state.steamInterval); state.steamInterval = null; }
+            if (state.steamTimer) clearTimeout(state.steamTimer);
+            if (state.steamInterval) clearInterval(state.steamInterval);
             state.isSteaming = false;
             state.steamSeconds = 5;
             steamTimerContainer.style.display = 'none';
@@ -958,8 +872,8 @@
         function renderCookingUI() {
             const order = state.orders[state.currentCookingOrderIdx];
             if (!order || !state.currentDishName) {
-                recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
-                assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
+                recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';
+                assemblyArea.innerHTML = '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
                 stepHint.textContent = 'Нажмите "Готовить" у заказа';
                 actionButtons.innerHTML = '';
                 return;
@@ -979,7 +893,7 @@
             });
             recipeHtml += `</div>`;
             if (recipe.needsSteam) {
-                recipeHtml += `<div style="margin-top:4px; color:#1a5a30; font-family:'Press Start 2P',monospace; font-size:11px;">♨️ Требуется пароварка</div>`;
+                recipeHtml += `<div style="margin-top:2px; color:#1a5a30; font-size:7px;">♨️ Требуется пароварка</div>`;
             }
             if (progressText) {
                 recipeHtml += `<div class="progress-info">${progressText}</div>`;
@@ -988,7 +902,7 @@
 
             let assemblyHtml = state.assembled.length ? 
                 state.assembled.map(a => `<span class="placed">${a}</span>`).join(' ') : 
-                '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
+                '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
             assemblyArea.innerHTML = assemblyHtml;
 
             const allIngredients = state.neededIngredients.every(i => state.assembled.includes(i));
@@ -998,15 +912,14 @@
             let buttonsHtml = '';
             
             if (allDone) {
-                buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ ЗАКАЗ</button>`;
+                buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ</button>`;
             } else if (isDishDone) {
                 if (order.dishes.length === 1) {
-                    buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ ЗАКАЗ</button>`;
+                    buttonsHtml = `<button class="action-btn done" id="finishOrderBtn">✅ ЗАВЕРШИТЬ</button>`;
                 } else {
-                    buttonsHtml = `<button class="action-btn next" id="nextDishBtn">➡️ СЛЕДУЮЩЕЕ БЛЮДО</button>`;
+                    buttonsHtml = `<button class="action-btn next" id="nextDishBtn">➡️ СЛЕДУЮЩЕЕ</button>`;
                 }
             } else if (state.isSteaming) {
-                // Показываем таймер по центру
                 buttonsHtml = '';
                 steamTimerContainer.style.display = 'flex';
                 steamTimerDisplay.textContent = `${state.steamSeconds}с`;
@@ -1014,32 +927,26 @@
                 buttonsHtml = `<button class="action-btn fold" id="foldBtn">📦 СВЕРНУТЬ</button>`;
             } else if (state.isFolded && !isDishDone) {
                 if (recipe.needsSteam) {
-                    buttonsHtml = `<button class="action-btn steam" id="steamBtn">♨️ НА ПАРУ (5с)</button>`;
+                    buttonsHtml = `<button class="action-btn steam" id="steamBtn">♨️ НА ПАРУ</button>`;
                 } else {
                     order.dishCompleted[state.currentDishIndex] = true;
                     const allDoneNow = order.dishCompleted.every(v => v === true);
-                    if (allDoneNow) {
-                        showMessage(`✅ Все блюда в заказе готовы!`);
-                    } else {
-                        showMessage(`✅ ${recipe.display} готов!`);
-                    }
+                    if (allDoneNow) showMessage('✅ Все блюда готовы!');
+                    else showMessage(`✅ ${recipe.display} готов!`);
                     renderCookingUI();
                     renderOrders();
                     return;
                 }
             }
 
-            if (!state.isSteaming) {
-                steamTimerContainer.style.display = 'none';
-            }
+            if (!state.isSteaming) steamTimerContainer.style.display = 'none';
             actionButtons.innerHTML = buttonsHtml;
 
             const foldBtn = document.getElementById('foldBtn');
             if (foldBtn) {
                 foldBtn.addEventListener('click', () => {
                     if (state.gameOver || !state.shiftActive) return;
-                    const allPresent = state.neededIngredients.every(i => state.assembled.includes(i));
-                    if (!allPresent) {
+                    if (!state.neededIngredients.every(i => state.assembled.includes(i))) {
                         showMessage('⚠️ Не все ингредиенты добавлены');
                         return;
                     }
@@ -1054,10 +961,7 @@
                 steamBtn.addEventListener('click', () => {
                     if (state.gameOver || !state.shiftActive) return;
                     if (state.isSteaming) return;
-                    if (!state.isFolded) {
-                        showMessage('⚠️ Сначала сверните блюдо');
-                        return;
-                    }
+                    if (!state.isFolded) { showMessage('⚠️ Сначала сверните'); return; }
                     startSteaming();
                 });
             }
@@ -1066,32 +970,22 @@
             if (nextBtn) {
                 nextBtn.addEventListener('click', () => {
                     if (state.gameOver || !state.shiftActive) return;
-                    const allDoneNow = order.dishCompleted.every(v => v === true);
-                    if (allDoneNow) {
-                        completeOrder();
-                        return;
-                    }
-                    let nextDishIdx = -1;
+                    if (order.dishCompleted.every(v => v === true)) { completeOrder(); return; }
+                    let nextIdx = -1;
                     for (let i = state.currentDishIndex + 1; i < order.dishes.length; i++) {
-                        if (!order.dishCompleted[i]) {
-                            nextDishIdx = i;
-                            break;
-                        }
+                        if (!order.dishCompleted[i]) { nextIdx = i; break; }
                     }
-                    if (nextDishIdx === -1) {
-                        completeOrder();
-                        return;
-                    }
-                    state.currentDishIndex = nextDishIdx;
+                    if (nextIdx === -1) { completeOrder(); return; }
+                    state.currentDishIndex = nextIdx;
                     state.assembled = [];
-                    state.currentDishName = order.dishes[nextDishIdx];
+                    state.currentDishName = order.dishes[nextIdx];
                     state.neededIngredients = MENU[state.currentDishName].ingredients.slice();
                     state.isFolded = false;
                     state.isSteaming = false;
                     steamTimerContainer.style.display = 'none';
                     renderCookingUI();
                     renderOrders();
-                    showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${nextDishIdx+1}/${order.dishes.length})`);
+                    showMessage(`🔪 Готовим ${MENU[state.currentDishName].display} (${nextIdx+1}/${order.dishes.length})`);
                 });
             }
 
@@ -1103,30 +997,15 @@
                 });
             }
 
-            // Подсказка
-            if (allDone) {
-                stepHint.textContent = '✅ Все блюда готовы! Завершите заказ';
-            } else if (isDishDone) {
-                if (order.dishes.length === 1) {
-                    stepHint.textContent = '✅ Блюдо готово! Завершите заказ';
-                } else {
-                    stepHint.textContent = '✅ Блюдо готово! Переходите к следующему';
-                }
-            } else if (state.isSteaming) {
-                stepHint.textContent = `♨️ Приготовление на пару... ${state.steamSeconds}с`;
-            } else if (allIngredients && !state.isFolded) {
-                stepHint.textContent = '📦 Все ингредиенты собраны! Нажмите СВЕРНУТЬ';
-            } else if (state.isFolded && !isDishDone && recipe.needsSteam) {
-                stepHint.textContent = '♨️ Нажмите НА ПАРУ (5 секунд)';
-            } else if (state.isFolded && !isDishDone && !recipe.needsSteam) {
-                stepHint.textContent = '✅ Блюдо готово!';
-            } else {
+            if (allDone) stepHint.textContent = '✅ Все блюда готовы! Завершите заказ';
+            else if (isDishDone) stepHint.textContent = order.dishes.length === 1 ? '✅ Блюдо готово! Завершите' : '✅ Блюдо готово! Далее';
+            else if (state.isSteaming) stepHint.textContent = `♨️ Парится... ${state.steamSeconds}с`;
+            else if (allIngredients && !state.isFolded) stepHint.textContent = '📦 Все собрано! Нажмите СВЕРНУТЬ';
+            else if (state.isFolded && !isDishDone && recipe.needsSteam) stepHint.textContent = '♨️ Нажмите НА ПАРУ';
+            else if (state.isFolded && !isDishDone && !recipe.needsSteam) stepHint.textContent = '✅ Блюдо готово!';
+            else {
                 const missing = state.neededIngredients.filter(i => !state.assembled.includes(i));
-                if (missing.length > 0) {
-                    stepHint.textContent = `📦 Добавьте: ${missing.join(', ')}`;
-                } else {
-                    stepHint.textContent = 'Продолжайте приготовление';
-                }
+                stepHint.textContent = missing.length ? `📦 Добавьте: ${missing.join(', ')}` : 'Продолжайте';
             }
         }
 
@@ -1136,7 +1015,6 @@
             state.steamSeconds = 5;
             steamTimerContainer.style.display = 'flex';
             steamTimerDisplay.textContent = `${state.steamSeconds}с`;
-            
             renderCookingUI();
             
             state.steamInterval = setInterval(() => {
@@ -1147,16 +1025,12 @@
                     state.steamInterval = null;
                     state.isSteaming = false;
                     steamTimerContainer.style.display = 'none';
-                    
                     const order = state.orders[state.currentCookingOrderIdx];
                     if (order && !order.completed) {
                         order.dishCompleted[state.currentDishIndex] = true;
                         const allDone = order.dishCompleted.every(v => v === true);
-                        if (allDone) {
-                            showMessage(`✅ Все блюда в заказе готовы!`);
-                        } else {
-                            showMessage(`✅ ${MENU[state.currentDishName].display} готов!`);
-                        }
+                        if (allDone) showMessage('✅ Все блюда готовы!');
+                        else showMessage(`✅ ${MENU[state.currentDishName].display} готов!`);
                         renderCookingUI();
                         renderOrders();
                     }
@@ -1167,18 +1041,11 @@
         function completeOrder() {
             const order = state.orders[state.currentCookingOrderIdx];
             if (!order || order.completed) return;
-            
-            const allDone = order.dishCompleted.every(v => v === true);
-            if (!allDone) {
-                showMessage('⚠️ Не все блюда в заказе готовы');
+            if (!order.dishCompleted.every(v => v === true)) {
+                showMessage('⚠️ Не все блюда готовы');
                 return;
             }
-            
-            let totalPrice = 0;
-            order.dishes.forEach(d => {
-                totalPrice += MENU[d]?.price || 15;
-            });
-            
+            let totalPrice = order.dishes.reduce((sum, d) => sum + (MENU[d]?.price || 15), 0);
             state.coins += totalPrice;
             state.totalOrdersServed += order.dishes.length;
             order.completed = true;
@@ -1190,20 +1057,16 @@
             state.assembled = [];
             state.currentDishName = null;
             state.isFolded = false;
-            if (state.steamTimer) { clearTimeout(state.steamTimer); state.steamTimer = null; }
-            if (state.steamInterval) { clearInterval(state.steamInterval); state.steamInterval = null; }
+            if (state.steamTimer) clearTimeout(state.steamTimer);
+            if (state.steamInterval) clearInterval(state.steamInterval);
             state.isSteaming = false;
             steamTimerContainer.style.display = 'none';
-            
-            recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
-            assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
+            recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';
+            assemblyArea.innerHTML = '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
             stepHint.textContent = 'Нажмите "Готовить" у заказа';
             actionButtons.innerHTML = '';
             renderOrders();
-            
-            if (state.coins < -100) {
-                gameOver('💸 Банкрот! Ты проиграл.');
-            }
+            if (state.coins < -100) gameOver('💸 Банкрот! Ты проиграл.');
         }
 
         function gameOver(reason) {
@@ -1238,16 +1101,14 @@
                         if (state.steamInterval) clearInterval(state.steamInterval);
                         state.isSteaming = false;
                         steamTimerContainer.style.display = 'none';
-                        recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
-                        assemblyArea.innerHTML = '<span style="color:#880000; font-weight:bold; font-family:\'Press Start 2P\',monospace; font-size:11px;">📦 Сборка</span>';
+                        recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';
+                        assemblyArea.innerHTML = '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
                         stepHint.textContent = 'Нажмите "Готовить" у заказа';
                         actionButtons.innerHTML = '';
                     }
                     showMessage(`⏰ Время вышло! Штраф -${penalty} монет`);
                     updateCoins();
-                    if (state.coins < -100) {
-                        gameOver('💸 Банкрот! Ты проиграл.');
-                    }
+                    if (state.coins < -100) gameOver('💸 Банкрот! Ты проиграл.');
                     renderOrders();
                 }
             });
@@ -1257,15 +1118,11 @@
         document.querySelectorAll('.ingredient-box').forEach(box => {
             box.addEventListener('click', function() {
                 if (state.gameOver || !state.shiftActive || state.currentCookingOrderIdx === -1) {
-                    showMessage('⚠️ Сначала начните готовить заказ (кнопка "Готовить")');
+                    showMessage('⚠️ Начните готовить заказ');
                     return;
                 }
                 const order = state.orders[state.currentCookingOrderIdx];
-                if (!order || !state.currentDishName) return;
-                if (order.completed) {
-                    showMessage('⚠️ Этот заказ уже выполнен');
-                    return;
-                }
+                if (!order || !state.currentDishName || order.completed) return;
                 if (order.dishCompleted[state.currentDishIndex]) {
                     showMessage('⚠️ Это блюдо уже готово');
                     return;
@@ -1273,24 +1130,16 @@
                 const recipe = MENU[state.currentDishName];
                 if (!recipe) return;
                 const ing = this.dataset.ing;
-                
                 if (!state.neededIngredients.includes(ing)) {
-                    showMessage(`❌ ${ing} не нужен для этого блюда`);
+                    showMessage(`❌ ${ing} не нужен`);
                     return;
                 }
                 if (state.assembled.includes(ing)) {
                     showMessage(`⚠️ ${ing} уже добавлен`);
                     return;
                 }
-                if (state.isFolded) {
-                    showMessage('⚠️ Блюдо уже свернуто, нельзя добавлять ингредиенты');
-                    return;
-                }
-                if (state.isSteaming) {
-                    showMessage('⚠️ Идёт приготовление на пару, подождите');
-                    return;
-                }
-                
+                if (state.isFolded) { showMessage('⚠️ Блюдо уже свернуто'); return; }
+                if (state.isSteaming) { showMessage('⚠️ Идёт пар'); return; }
                 state.assembled.push(ing);
                 showMessage(`✅ Добавлен ${ing}`);
                 renderCookingUI();
@@ -1299,8 +1148,7 @@
         });
 
         function startShift() {
-            if (state.gameOver) return;
-            if (state.shiftActive) return;
+            if (state.gameOver || state.shiftActive) return;
             state.shiftActive = true;
             state.orders = [];
             state.totalOrdersServed = 0;
@@ -1312,26 +1160,49 @@
             state.isFolded = false;
             state.orderCounter = 0;
             updateCoins();
-            shiftBtn.textContent = '⏳ Смена идёт...';
-            kitchenStatus.textContent = '🍳 Принимай заказы!';
+            shiftBtn.textContent = 'Завершить смену';
+            shiftBtn.classList.add('active');
+            kitchenStatus.textContent = '🍳 Смена активна! Принимай заказы!';
             showMessage('Смена началась!');
             generateOrder();
             if (state.orderInterval) clearInterval(state.orderInterval);
             state.orderInterval = setInterval(() => {
-                if (state.shiftActive && !state.gameOver) {
-                    generateOrder();
-                }
+                if (state.shiftActive && !state.gameOver) generateOrder();
             }, 15000);
             if (state.timerInterval) clearInterval(state.timerInterval);
             state.timerInterval = setInterval(() => {
-                if (state.shiftActive && !state.gameOver) {
-                    updateTimers();
-                }
+                if (state.shiftActive && !state.gameOver) updateTimers();
             }, 100);
             renderOrders();
-            recipeContent.innerHTML = '<span style="color:#880000; font-family:\'Press Start 2P\',monospace; font-size:11px;">Выберите заказ</span>';
+            recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';
             stepHint.textContent = 'Нажмите "Готовить" у заказа';
             actionButtons.innerHTML = '';
+        }
+
+        function endShift() {
+            if (!state.shiftActive) return;
+            state.shiftActive = false;
+            if (state.orderInterval) clearInterval(state.orderInterval);
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            if (state.steamInterval) clearInterval(state.steamInterval);
+            shiftBtn.textContent = 'Выйти на смену';
+            shiftBtn.classList.remove('active');
+            kitchenStatus.textContent = '🍳 Смена завершена';
+            showMessage('⏹ Смена завершена!');
+            // Очищаем заказы
+            state.orders = [];
+            renderOrders();
+            recipeContent.innerHTML = '<span style="color:#880000; font-size:8px;">Выберите заказ</span>';
+            assemblyArea.innerHTML = '<span style="color:#880000; font-size:8px; font-family:\'Press Start 2P\',monospace;">📦 Сборка</span>';
+            stepHint.textContent = 'Нажмите "Выйти на смену"';
+            actionButtons.innerHTML = '';
+            state.currentCookingOrderIdx = -1;
+            state.currentDishIndex = 0;
+            state.assembled = [];
+            state.currentDishName = null;
+            state.isFolded = false;
+            state.isSteaming = false;
+            steamTimerContainer.style.display = 'none';
         }
 
         // ---------- NAVIGATION ----------
@@ -1356,7 +1227,7 @@
                 if (!state.shiftActive) {
                     startShift();
                 } else {
-                    showMessage('Смена уже активна');
+                    endShift();
                 }
             };
         });

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ПОКЕ РАМЕН</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background: #1a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: manipulation;
+        }
+        #game-container {
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            max-height: 780px;
+            background: #ffffff;
+            border: 6px solid #cc0000;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 0 4px #660000;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .pixel-text {
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #000000;
+            font-weight: bold;
+        }
+        .pixel-btn {
+            background: #cc0000;
+            border: 4px solid #880000;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 14px 24px;
+            border-radius: 16px;
+            text-transform: uppercase;
+            box-shadow: inset -3px -3px 0 #660000, inset 3px 3px 0 #ff4444;
+            transition: 0.05s linear;
+            touch-action: manipulation;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 0 #550000;
+            letter-spacing: 2px;
+        }
+        .pixel-btn:active {
+            transform: scale(0.94);
+            box-shadow: inset 3px 3px 0 #660000, inset -3px -3px 0 #ff4444;
+        }
+        .pixel-btn.small {
+            font-size: 16px;
+            padding: 10px 16px;
+        }
+        .pixel-btn.white {
+            background: #ffffff;
+            border: 4px solid #cc0000;
+            color: #000000;
+            text-shadow: none;
+            box-shadow: inset -3px -3px 0 #aaaaaa, inset 3px 3px 0 #ffffff;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: #ffffff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.2s;
+        }
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #start-screen {
+            background: #ffffff;
+            z-index: 10;
+            gap: 24px;
+        }
+        #start-screen h1 {
+            font-size: 48px;
+            color: #cc0000;
+            text-shadow: 4px 4px 0 #880000, 6px 6px 0 #ffffff;
+            letter-spacing: 6px;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        #name-screen {
+            background: #ffffff;
+            z-index: 9;
+            gap: 18px;
+        }
+        #name-screen input {
+            background: #ffffff;
+            border: 4px solid #cc0000;
+            color: #000000;
+            font-size: 24px;
+            padding: 14px 18px;
+            width: 80%;
+            text-align: center;
+            border-radius: 30px;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            font-weight: bold;
+        }
+        #rules-screen {
+            background: #ffffff;
+            z-index: 8;
+            gap: 18px;
+            text-align: center;
+            padding: 24px;
+        }
+        #rules-screen p {
+            font-size: 20px;
+            color: #000000;
+            line-height: 1.5;
+            max-width: 90%;
+            font-weight: bold;
+        }
+        #game-screen {
+            background: #ffffff;
+            z-index: 5;
+            padding: 8px;
+            justify-content: flex-start;
+            gap: 4px;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 4px 8px;
+            background: #cc0000;
+            border: 3px solid #880000;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+        .coin-display {
+            background: #ffffff;
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 3px solid #880000;
+            color: #000000;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .shift-btn {
+            background: #ffffff;
+            border: 3px solid #880000;
+            color: #cc0000;
+            font-size: 20px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+        .kitchen-area {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            gap: 6px;
+            min-height: 0;
+        }
+        .kitchen {
+            flex: 2;
+            background: #ffdddd;
+            border: 4px solid #cc0000;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 8px;
+            position: relative;
+        }
+        .order-panel {
+            flex: 1.2;
+            background: #ffeeee;
+            border: 4px solid #cc0000;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            gap: 6px;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+        .order-item {
+            background: #ffffff;
+            border: 3px solid #cc0000;
+            border-radius: 16px;
+            padding: 6px;
+            font-size: 14px;
+            color: #000000;
+        }
+        .order-item .timer {
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .order-recipe {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 4px 0;
+        }
+        .ingredient-tag {
+            background: #ffcccc;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            border: 2px solid #cc0000;
+            color: #000000;
+            font-weight: bold;
+        }
+        .cook-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 6px 0;
+            justify-content: center;
+        }
+        .cook-btn {
+            background: #cc0000;
+            border: 3px solid #880000;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .cook-btn:active {
+            transform: scale(0.92);
+        }
+        .cook-btn.white {
+            background: #ffffff;
+            border: 3px solid #cc0000;
+            color: #000000;
+        }
+        .steam-indicator {
+            background: #cc0000;
+            color: #ffffff;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .message-bar {
+            width: 100%;
+            background: #cc0000;
+            border: 3px solid #880000;
+            border-radius: 30px;
+            padding: 6px 12px;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+            min-height: 44px;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+        .flex-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .mt-2 { margin-top: 8px; }
+        .ingredient-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            background: #ffdddd;
+            padding: 8px;
+            border-radius: 20px;
+            border: 2px solid #cc0000;
+            width: 100%;
+        }
+        .ingredient-pool .ing-tag {
+            background: #ffffff;
+            border: 2px solid #cc0000;
+            padding: 4px 12px;
+            border-radius: 30px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .assembly-area {
+            background: #ffffff;
+            border: 3px dashed #cc0000;
+            border-radius: 20px;
+            padding: 8px;
+            min-height: 60px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .assembly-area .placed {
+            background: #ffcccc;
+            border: 2px solid #cc0000;
+            padding: 4px 12px;
+            border-radius: 30px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div id="game-container">
+    <!-- СТАРТ -->
+    <div id="start-screen" class="screen">
+        <h1>ПОКЕ<br>РАМЕН</h1>
+        <button class="pixel-btn" id="startBtn">Начать</button>
+        <div style="font-size:14px; color:#880000; margin-top:20px; font-weight:bold;">16-bit kitchen</div>
+    </div>
+
+    <!-- ИМЯ -->
+    <div id="name-screen" class="screen hidden">
+        <h2 style="color:#cc0000; text-shadow:2px 2px 0 #880000;">Введи имя</h2>
+        <input type="text" id="nameInput" maxlength="12" placeholder="Шеф-повар" value="Кунг-пао">
+        <button class="pixel-btn" id="nameConfirmBtn">Готово</button>
+    </div>
+
+    <!-- ПРАВИЛА -->
+    <div id="rules-screen" class="screen hidden">
+        <p id="rulesText">Привет, Шеф! Ты повар в кафе "Поке рамен", твоя задача выполнять заказы, которые тебе будут приходить</p>
+        <button class="pixel-btn" id="rulesAcceptBtn">На кухню!</button>
+    </div>
+
+    <!-- ИГРА -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-header">
+            <div class="coin-display">🪙 <span id="coinCount">0</span></div>
+            <button class="shift-btn" id="shiftBtn">Выйти на смену</button>
+        </div>
+
+        <div class="kitchen-area">
+            <div class="kitchen" id="kitchenZone">
+                <div style="color:#cc0000; font-size:18px; text-align:center; padding:8px; font-weight:bold;">
+                    <span id="kitchenStatus">🍳 Нажми «Выйти на смену»</span>
+                </div>
+                <div id="cookingPanel" style="display:flex; flex-direction:column; align-items:center; gap:6px; width:100%;">
+                    <div id="currentOrderDisplay" style="color:#000000; font-size:20px; background:#ffdddd; padding:8px; border-radius:20px; width:100%; text-align:center; font-weight:bold;">Готовьте!</div>
+                    <div id="cookActionsPanel" class="cook-actions"></div>
+                    <div id="ingredientPool" class="ingredient-pool"></div>
+                    <div id="assemblyArea" class="assembly-area"><span style="color:#880000;">📦 Сборка</span></div>
+                    <div id="cookingControls" style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;"></div>
+                </div>
+            </div>
+            <div class="order-panel" id="orderPanel">
+                <div style="color:#cc0000; font-size:16px; text-align:center; border-bottom:2px solid #cc0000; padding-bottom:4px; font-weight:bold;">📋 ЗАКАЗЫ</div>
+                <div id="orderList" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:4px;"></div>
+            </div>
+        </div>
+        <div class="message-bar" id="messageBar">🍜 Добро пожаловать!</div>
+    </div>
+</div>
+<script>
+    (function() {
+        // ---------- DATA ----------
+        const MENU = {
+            'Моти с клубникой': {
+                ingredients: ['рисовое тесто', 'клубника', 'творожный сыр'],
+                price: 15,
+                steps: ['взять тесто', 'добавить клубнику и сыр', 'свернуть'],
+                type: 'light'
+            },
+            'Дим сам': {
+                ingredients: ['тесто', 'лосось', 'креветка'],
+                price: 20,
+                steps: ['взять тесто', 'добавить лосось и креветку', 'свернуть', 'приготовить на пару (5с)'],
+                type: 'light'
+            },
+            'Моти со смородиной': {
+                ingredients: ['смородина', 'рисовое тесто', 'творожный сыр'],
+                price: 15,
+                steps: ['взять тесто', 'добавить смородину и сыр', 'свернуть'],
+                type: 'light'
+            }
+        };
+        const ALL_DISHES = Object.keys(MENU);
+
+        // ---------- STATE ----------
+        let state = {
+            name: 'Шеф',
+            coins: 0,
+            orders: [],
+            totalOrdersServed: 0,
+            shiftActive: false,
+            orderInterval: null,
+            timerInterval: null,
+            currentCookingOrderIdx: -1,
+            cookingStep: 0,
+            isSteaming: false,
+            steamTimer: null,
+            gameOver: false,
+            // для сборки
+            selectedIngredient: null,
+            assembled: [],
+        };
+
+        // DOM refs
+        const $ = id => document.getElementById(id);
+        const startScreen = $('start-screen');
+        const nameScreen = $('name-screen');
+        const rulesScreen = $('rules-screen');
+        const gameScreen = $('game-screen');
+        const nameInput = $('nameInput');
+        const rulesText = $('rulesText');
+        const coinCount = $('coinCount');
+        const shiftBtn = $('shiftBtn');
+        const kitchenStatus = $('kitchenStatus');
+        const orderList = $('orderList');
+        const messageBar = $('messageBar');
+        const currentOrderDisplay = $('currentOrderDisplay');
+        const cookActionsPanel = $('cookActionsPanel');
+        const ingredientPool = $('ingredientPool');
+        const assemblyArea = $('assemblyArea');
+        const cookingControls = $('cookingControls');
+
+        function updateCoins() {
+            coinCount.textContent = state.coins;
+        }
+
+        function showMessage(msg) {
+            messageBar.textContent = msg;
+        }
+
+        // ---------- GAME MECHANICS ----------
+        function generateOrder() {
+            if (!state.shiftActive || state.gameOver) return;
+            const served = state.totalOrdersServed;
+            let pool = ALL_DISHES;
+            // для демо все доступны
+            let count = 1;
+            if (served >= 3 && served < 10) count = 2;
+            else if (served >= 10) count = 3;
+
+            const dishes = [];
+            for (let i=0; i<count; i++) {
+                const dish = pool[Math.floor(Math.random() * pool.length)];
+                dishes.push(dish);
+            }
+
+            const order = {
+                dishes: dishes,
+                remaining: 40,
+                timer: 40,
+                cooked: false,
+                completed: false,
+                index: Date.now() + Math.random()
+            };
+            state.orders.push(order);
+            renderOrders();
+            showMessage(`📩 Новый заказ! ${dishes.join(', ')}`);
+        }
+
+        function renderOrders() {
+            orderList.innerHTML = '';
+            state.orders.forEach((order, idx) => {
+                if (order.completed) return;
+                const div = document.createElement('div');
+                div.className = 'order-item';
+                const timerHtml = `<span class="timer">⏱ ${Math.ceil(order.remaining)}с</span>`;
+                const dishesHtml = order.dishes.map(d => `<span class="ingredient-tag">${d}</span>`).join(' ');
+                div.innerHTML = `<div style="display:flex; justify-content:space-between;">${timerHtml} <span>${order.dishes.length} бл.</span></div>
+                                 <div class="order-recipe">${dishesHtml}</div>
+                                 ${!order.cooked ? `<button class="cook-btn" data-orderidx="${idx}">🔪 Готовить</button>` : '<span style="color:#cc0000;">✅ Готово (жми отдать)</span>'}`;
+                const btn = div.querySelector('.cook-btn');
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const i = parseInt(btn.dataset.orderidx);
+                        startCooking(i);
+                    });
+                }
+                if (order.cooked && !order.completed) {
+                    const serveBtn = document.createElement('button');
+                    serveBtn.className = 'cook-btn white';
+                    serveBtn.textContent = '✅ Отдать';
+                    serveBtn.dataset.orderidx = idx;
+                    serveBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const i = parseInt(serveBtn.dataset.orderidx);
+                        serveOrder(i);
+                    });
+                    div.appendChild(serveBtn);
+                }
+                orderList.appendChild(div);
+            });
+        }
+
+        function startCooking(orderIdx) {
+            if (state.gameOver || !state.shiftActive) return;
+            const order = state.orders[orderIdx];
+            if (!order || order.completed || order.cooked) return;
+            if (state.currentCookingOrderIdx !== -1) {
+                showMessage('⚠️ Сначала закончи текущее блюдо');
+                return;
+            }
+            state.currentCookingOrderIdx = orderIdx;
+            state.cookingStep = 0;
+            state.assembled = [];
+            state.selectedIngredient = null;
+            order.cooked = false;
+            renderCookingUI(orderIdx);
+        }
+
+        function renderCookingUI(orderIdx) {
+            const order = state.orders[orderIdx];
+            if (!order) return;
+            const dishName = order.dishes[0];
+            const recipe = MENU[dishName];
+            if (!recipe) return;
+            const steps = recipe.steps;
+            const stepIdx = state.cookingStep;
+
+            // Показываем ингредиенты для сборки
+            const needed = recipe.ingredients;
+            let poolHtml = needed.map(ing => {
+                const already = state.assembled.includes(ing);
+                return `<span class="ing-tag" style="${already ? 'opacity:0.5;' : ''}" data-ing="${ing}">${ing}</span>`;
+            }).join(' ');
+            ingredientPool.innerHTML = poolHtml;
+
+            // отображаем собранное
+            let assemblyHtml = state.assembled.length ? state.assembled.map(a => `<span class="placed">${a}</span>`).join(' ') : '<span style="color:#880000;">📦 Сборка</span>';
+            assemblyArea.innerHTML = assemblyHtml;
+
+            // управление
+            let controlsHtml = '';
+            if (stepIdx < steps.length) {
+                const step = steps[stepIdx];
+                controlsHtml += `<div style="color:#000000; font-weight:bold;">Шаг ${stepIdx+1}/${steps.length}: ${step}</div>`;
+                if (step.includes('взять')) {
+                    // показать выбор ингредиента
+                    const ingName = step.replace('взять ', '').trim();
+                    controlsHtml += `<button class="cook-btn" id="takeIngBtn">✅ Взять ${ingName}</button>`;
+                } else if (step.includes('добавить')) {
+                    controlsHtml += `<button class="cook-btn" id="addIngBtn">✅ Добавить</button>`;
+                } else if (step.includes('свернуть')) {
+                    controlsHtml += `<button class="cook-btn" id="foldBtn">✅ Свернуть</button>`;
+                } else if (step.includes('пару')) {
+                    controlsHtml += `<button class="cook-btn" id="steamBtn">🔥 На пару (5с)</button>`;
+                }
+            } else {
+                controlsHtml += `<div style="color:#cc0000; font-weight:bold;">✅ Блюдо готово! Отдайте заказ.</div>`;
+                order.cooked = true;
+                renderOrders();
+                state.currentCookingOrderIdx = -1;
+                showMessage(`✅ ${dishName} готов!`);
+                currentOrderDisplay.innerHTML = 'Готовьте!';
+                cookActionsPanel.innerHTML = '';
+                return;
+            }
+            cookingControls.innerHTML = controlsHtml;
+            currentOrderDisplay.innerHTML = `<span style="color:#cc0000;">${dishName}</span>`;
+
+            // Обработчики
+            const takeBtn = document.getElementById('takeIngBtn');
+            if (takeBtn) {
+                takeBtn.onclick = () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    const stepText = steps[state.cookingStep];
+                    const ing = stepText.replace('взять ', '').trim();
+                    // проверяем, есть ли ингредиент в рецепте и не собран ли уже
+                    if (state.assembled.includes(ing)) {
+                        showMessage(`⚠️ ${ing} уже добавлен`);
+                        return;
+                    }
+                    if (!recipe.ingredients.includes(ing)) {
+                        showMessage(`❌ Неверный ингредиент`);
+                        return;
+                    }
+                    state.assembled.push(ing);
+                    state.cookingStep++;
+                    renderCookingUI(orderIdx);
+                    showMessage(`✅ Взял ${ing}`);
+                };
+            }
+
+            const addBtn = document.getElementById('addIngBtn');
+            if (addBtn) {
+                addBtn.onclick = () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    // в шаге добавления мы берем следующий ингредиент по порядку
+                    const stepText = steps[state.cookingStep];
+                    const neededList = recipe.ingredients;
+                    // определяем, какой ингредиент нужно добавить
+                    let nextIng = null;
+                    for (let ing of neededList) {
+                        if (!state.assembled.includes(ing)) {
+                            nextIng = ing;
+                            break;
+                        }
+                    }
+                    if (!nextIng) {
+                        showMessage('⚠️ Все ингредиенты уже добавлены');
+                        return;
+                    }
+                    state.assembled.push(nextIng);
+                    state.cookingStep++;
+                    renderCookingUI(orderIdx);
+                    showMessage(`✅ Добавил ${nextIng}`);
+                };
+            }
+
+            const foldBtn = document.getElementById('foldBtn');
+            if (foldBtn) {
+                foldBtn.onclick = () => {
+                    if (state.gameOver || !state.shiftActive) return;
+                    // проверим все ли ингредиенты собраны
+                    const needed = recipe.ingredients;
+                    const allPresent = needed.every(i => state.assembled.includes(i));
+                    if (!allPresent) {
+                        showMessage('⚠️ Не все ингредиенты добавлены');
+                        return;
+                    }
+                    state.cookingStep++;
+                    renderCookingUI(orderIdx);
+                    showMessage('✅ Свернул!');
+                };
+            }
+
+            const steamBtn = document.getElementById('steamBtn');
+            if (steamBtn) {
+                steamBtn.onclick = () => {
+                    if (state.gameOver || !state.shiftActive || state.isSteaming) return;
+                    state.isSteaming = true;
+                    showMessage('🔥 Приготовление на пару... 5 сек');
+                    steamBtn.disabled = true;
+                    steamBtn.textContent = '⏳';
+                    state.steamTimer = setTimeout(() => {
+                        state.isSteaming = false;
+                        state.cookingStep++;
+                        renderCookingUI(orderIdx);
+                        showMessage('✅ Пар завершён');
+                        renderOrders();
+                    }, 5000);
+                };
+            }
+        }
+
+        function serveOrder(orderIdx) {
+            if (state.gameOver) return;
+            const order = state.orders[orderIdx];
+            if (!order || !order.cooked || order.completed) return;
+            const dishName = order.dishes[0];
+            const price = MENU[dishName]?.price || 15;
+            state.coins += price;
+            state.totalOrdersServed++;
+            order.completed = true;
+            updateCoins();
+            showMessage(`💰 +${price} монет за ${dishName}`);
+            state.currentCookingOrderIdx = -1;
+            currentOrderDisplay.innerHTML = 'Готовьте!';
+            cookActionsPanel.innerHTML = '';
+            ingredientPool.innerHTML = '';
+            assemblyArea.innerHTML = '<span style="color:#880000;">📦 Сборка</span>';
+            cookingControls.innerHTML = '';
+            renderOrders();
+            if (state.coins < -100) {
+                gameOver('💸 Банкрот! Ты проиграл.');
+            }
+        }
+
+        function gameOver(reason) {
+            state.gameOver = true;
+            state.shiftActive = false;
+            if (state.orderInterval) clearInterval(state.orderInterval);
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            if (state.steamTimer) clearTimeout(state.steamTimer);
+            showMessage(`⛔ ${reason}`);
+            kitchenStatus.textContent = '🚫 Игра окончена';
+            shiftBtn.textContent = '🔁 Заново';
+            shiftBtn.onclick = () => location.reload();
+        }
+
+        function updateTimers() {
+            let anyActive = false;
+            state.orders.forEach((order, idx) => {
+                if (order.completed) return;
+                order.remaining -= 0.1;
+                if (order.remaining <= 0) {
+                    order.remaining = 0;
+                    const penalty = order.dishes.length * 10;
+                    state.coins -= penalty;
+                    order.completed = true;
+                    showMessage(`⏰ Время вышло! Штраф -${penalty} монет`);
+                    updateCoins();
+                    if (state.coins < -100) {
+                        gameOver('💸 Банкрот! Ты проиграл.');
+                    }
+                    renderOrders();
+                } else {
+                    anyActive = true;
+                }
+            });
+            renderOrders();
+        }
+
+        function startShift() {
+            if (state.gameOver) return;
+            if (state.shiftActive) return;
+            state.shiftActive = true;
+            state.orders = [];
+            state.totalOrdersServed = 0;
+            state.coins = 0;
+            updateCoins();
+            shiftBtn.textContent = '⏳ Смена идёт...';
+            kitchenStatus.textContent = '🍳 Принимай заказы!';
+            showMessage('Смена началась!');
+            generateOrder();
+            if (state.orderInterval) clearInterval(state.orderInterval);
+            state.orderInterval = setInterval(() => {
+                if (state.shiftActive && !state.gameOver) {
+                    generateOrder();
+                }
+            }, 10000);
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            state.timerInterval = setInterval(() => {
+                if (state.shiftActive && !state.gameOver) {
+                    updateTimers();
+                }
+            }, 100);
+            renderOrders();
+        }
+
+        // ---------- NAVIGATION ----------
+        $('startBtn').addEventListener('click', () => {
+            startScreen.classList.add('hidden');
+            nameScreen.classList.remove('hidden');
+        });
+
+        $('nameConfirmBtn').addEventListener('click', () => {
+            const name = nameInput.value.trim() || 'Шеф';
+            state.name = name;
+            nameScreen.classList.add('hidden');
+            rulesScreen.classList.remove('hidden');
+            rulesText.textContent = `Привет, ${name}! Ты повар в кафе "Поке рамен", твоя задача выполнять заказы, которые тебе будут приходить.`;
+        });
+
+        $('rulesAcceptBtn').addEventListener('click', () => {
+            rulesScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            showMessage(`🍜 Добро пожаловать, ${state.name}!`);
+            shiftBtn.onclick = () => {
+                if (!state.shiftActive) {
+                    startShift();
+                } else {
+                    showMessage('Смена уже активна');
+                }
+            };
+        });
+
+        updateCoins();
+    })();
+</script>
+</body>
+</html>
